@@ -4,4 +4,4 @@ scope 3 weeks
 
 MVP
 
-features
+features - encrypted login/register, postgres, api, CRUD, 
