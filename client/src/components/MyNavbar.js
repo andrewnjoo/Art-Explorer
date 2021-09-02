@@ -14,7 +14,7 @@ const MyNavbar = () => {
           height="30"
           className="d-inline-block align-top"
         />{' '}
-      artLover
+      artPassion
       </Navbar.Brand>
     </Container>
   </Navbar>

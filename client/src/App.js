@@ -2,7 +2,6 @@
 import axios from 'axios'
 import { useState } from "react";
 import MyNavbar from './components/MyNavbar';
-import Some from './components/Some'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 //declare vars
@@ -46,7 +45,6 @@ function App() {
   return (
     <div className="App">
       <MyNavbar/>
-      <Some/>
       <h2>get some artists</h2>
       <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={handleKeyDown} />
       <h4>{result}</h4>
