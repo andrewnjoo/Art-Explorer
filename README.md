@@ -1,26 +1,26 @@
 # artPassion
+> capstone project at devmtn
 
-### about
+Scope: 3 weeks - 1 Sep to 22 Sep
 
-capstone project for devmountain
+MVP: CRUD app w. PERN stack. React front-end & Postgres/Express/Node backend.
 
-scope 3 weeks
-
-MVP: CRUD app with PERN stack. React front end and Postgres/Express/Node backend.
-
-Features: should include encrypted login/register, postgres, API calls, CRUD, 
+Features: encrypted login/register, postgres, API calls, CRUD, comment on art pieces, save favorites
 
 Nice to have: jest tests
 
-### tech:
+<br>
 
+## tech:
+---
 react, axios, bootstrap
 
 APIs used: artsy
 
+<br>
 
 ### instructions:
-
+---
 ```
 cd client
 npm i
