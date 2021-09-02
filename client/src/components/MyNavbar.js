@@ -9,12 +9,12 @@ const MyNavbar = () => {
       <Navbar.Brand href="#home">
         <img
           alt=""
-          src="/logo.svg"
+          src="https://raw.githubusercontent.com/adnjoo/capstone/main/assets/mona.jpg"
           width="30"
           height="30"
           className="d-inline-block align-top"
         />{' '}
-      React Bootstrap
+      artLover
       </Navbar.Brand>
     </Container>
   </Navbar>
