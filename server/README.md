@@ -3,9 +3,9 @@
 ### instructions:
 
 ```
-git clone https://github.com/adnjoo/artPassion-backend
-cd artPassion-backend
+cd server
 npm i
+npm start
 ```
 
 initialize database, create tables
