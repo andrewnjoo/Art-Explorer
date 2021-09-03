@@ -22,6 +22,7 @@ APIs used: artsy
 ### instructions:
 ---
 ```
+git clone https://github.com/adnjoo/artexplorer
 cd client
 npm i
 npm start
