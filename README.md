@@ -1,4 +1,5 @@
 # artPassion
+
 > capstone project at devmtn
 
 Scope: 3 weeks - 1 Sep to 22 Sep
@@ -12,7 +13,9 @@ Nice to have: jest tests
 <br>
 
 ## tech:
+
 ---
+
 react, axios, bootstrap
 
 APIs used: artsy
@@ -20,7 +23,9 @@ APIs used: artsy
 <br>
 
 ### instructions:
+
 ---
+
 ```
 git clone https://github.com/adnjoo/artexplorer
 cd client

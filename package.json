@@ -1,0 +1,21 @@
+{
+  "name": "artExplorer",
+  "version": "1.0.0",
+  "description": "> capstone project at devmtn",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd client && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adnjoo/artExplorer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adnjoo/artExplorer/issues"
+  },
+  "homepage": "https://github.com/adnjoo/artExplorer#readme"
+}
