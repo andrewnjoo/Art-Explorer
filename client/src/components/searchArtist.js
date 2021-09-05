@@ -36,8 +36,9 @@ const SearchArtist = () => {
         },
       }
     );
-    // console.log(res2);
-    return res2.data._embedded.results[0].title;
+    console.log('results',res2.data._embedded.results[0]);
+    // console.log(res2.data._embedded.results[0].thumbnail);
+    return res2.data._embedded.results[0];
   };
   return (
     <div className='container text-center border mt-5'>
@@ -47,7 +48,8 @@ const SearchArtist = () => {
         onChange={(e) => setInput(e.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <h4>{result}</h4>
+      <h4>{result.title}</h4>
+      <img src={result.['_links'].thumbnail.href}></img>
     </div>
   );
 };

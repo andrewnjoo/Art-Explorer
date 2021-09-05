@@ -2,6 +2,8 @@
 
 > capstone project at devmtn
 
+<img src='./scrn.png' width='150'>
+
 MVP: find your favorite art, and save it in a list.
 
 Features: encrypted login/register, postgres db, API calls to artsy and to database, CRUD functionality (comment on art pieces, save favorites)
