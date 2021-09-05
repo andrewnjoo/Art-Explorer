@@ -1,5 +1,6 @@
 // import modules
-import axios from 'axios'
+import axios from "axios";
+import {useState} from 'react'
 
 // declare variables
 let clientID = "d7b5e06fed971b560f2f";
@@ -8,7 +9,18 @@ let apiUrl = "https://api.artsy.net/api/tokens/xapp_token";
 let xappToken;
 
 // export function
-export const searchArtist = async (input) =>  {
+const SearchArtist = () => {
+    let [input, setInput] = useState("");
+    let [result, setResult] = useState("");
+
+    const handleKeyDown = async (event) => {
+        if(event.key==='Enter'){
+          let data = await search(input)
+          // console.log(data)
+          setResult(data)
+        }
+      }
+  const search = async (input) => {
     //get token
     const res = await axios.post(apiUrl, {
       client_id: clientID,
@@ -25,5 +37,20 @@ export const searchArtist = async (input) =>  {
       }
     );
     // console.log(res2);
-    return res2.data._embedded.results[0].title
+    return res2.data._embedded.results[0].title;
   };
+  return (
+    <div className='container text-center border mt-5'>
+      <h2>get some artists</h2>
+      <input
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        onKeyDown={handleKeyDown}
+      />
+      <h4>{result}</h4>
+    </div>
+  );
+};
+
+
+export default SearchArtist;
