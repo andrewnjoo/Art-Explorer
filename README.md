@@ -2,23 +2,27 @@
 
 > capstone project at devmtn
 
-<img src='./scrn.png' width='150'>
+<img src='./scrn.png' width='250'>
 
-MVP: find your favorite art, and save it in a list.
+MVP: PERN full stack web app to find your favorite art, and save it in a list.
 
 Features: encrypted login/register, postgres db, API calls to artsy and to database, CRUD functionality (comment on art pieces, save favorites)
 
-Nice to have: jest tests
+Nice to have: assign rating to favorite artist/ art-pieces
 
-## tech:
+## front end tech:
 
-stack: PERN
+react, axios, bootstrap, jest (testing)
 
-react, axios, bootstrap
+## back end tech:
 
-APIs used: artsy
+nodemon, express, cors
 
-### instructions:
+Design: RESTful api
+
+APIs used: [artsy](https://developers.artsy.net/)
+
+### quick-start instructions:
 
 ```
 git clone https://github.com/adnjoo/artexplorer
@@ -29,4 +33,11 @@ in separate terminal window:
 
 ```
 npm run server
+```
+
+### (jest) testing instructions:
+
+```
+cd client
+npm run test
 ```
