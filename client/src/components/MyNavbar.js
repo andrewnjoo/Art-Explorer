@@ -7,7 +7,7 @@ const MyNavbar = () => {
     <div>
       {/* bootstrap navbar */}
       <Navbar bg="dark" variant="dark">
-        <Container>
+        <Container data-testid='container'>
           <Navbar.Brand href="#home">
             <img
               alt=""

@@ -12,9 +12,11 @@ const SearchArtist = () => {
       return (
         <div>
           <h4>{result.title}</h4>
-          <a href={result["_links"].self.href}>Link </a>
           <br />
+          <a href={result["_links"].permalink.href}>  
           <img src={result["_links"].thumbnail.href}></img>
+          </a>
+          <div id="biography">{bio == '' ? 'no bio available' : bio}</div>
         </div>
       );
     }
@@ -25,29 +27,43 @@ const SearchArtist = () => {
   const clientSecret = "92122aaf680fe0def89ce3bcc6d9d1d5";
   const apiUrl = "https://api.artsy.net/api/tokens/xapp_token";
   let xappToken;
-  let [searched,setSearched] = useState(false);
+  let [searched, setSearched] = useState(false);
   let [input, setInput] = useState("");
   let [result, setResult] = useState({
     _links: {
-      self: {
+      permalink: {
         href: "",
       },
       thumbnail: {
         href: "",
       },
     },
+    biography: "",
   });
+  let [bio, setBio] = useState('');
 
   const handleKeyDown = async (event) => {
     if (event.key === "Enter") {
       let data = await search(input);
-      // console.log(data)
+      console.log("data", data);
       setResult(data);
+      let bioURL = data["_links"].self.href;
+      console.log("biourl", bioURL);
+      //get artist biography
+      const res3 = await axios.get(bioURL, {
+        headers: {
+          "X-XAPP-Token": xappToken,
+        },
+      });
+      //console.log(res3)
+      console.log('biography',res3.data.biography);
+      setBio(res3.data.biography);
+      console.log("bio", bio);
     }
   };
   const search = async (input) => {
     setSearched(true);
-    console.log(searched)
+    console.log(searched);
     //get token
     const res = await axios.post(apiUrl, {
       client_id: clientID,
@@ -65,6 +81,7 @@ const SearchArtist = () => {
     );
     console.log("results", res2.data._embedded.results[0]);
     // console.log(res2.data._embedded.results[0].thumbnail);
+
     return res2.data._embedded.results[0];
   };
   return (
