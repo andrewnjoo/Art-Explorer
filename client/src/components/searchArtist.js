@@ -4,6 +4,9 @@ import { useState } from "react";
 
 // search artist function
 const SearchArtist = () => {
+  const addToFavs = () => {
+    console.log('test')
+  }
   // artist detail function
   const ArtistDetail = () => {
     if (!searched) {
@@ -12,6 +15,7 @@ const SearchArtist = () => {
       return (
         <div>
           <h4>{result.title}</h4>
+          <button onClick={addToFavs}>add to favs</button>
           <br />
           <a href={result["_links"].permalink.href}>  
           <img src={result["_links"].thumbnail.href}></img>

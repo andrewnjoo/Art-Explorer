@@ -5,6 +5,7 @@ module.exports = async (req, res, next) => {
   try {
     //1. destructure token
     const jwtToken = req.header("token");
+
     // console.log('token is:',jwtToken)
 
     //2. check if token present

@@ -1,8 +1,16 @@
 //import modules
 import { Navbar, Container, NavDropdown } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 // navbar function
-const MyNavbar = () => {
+const MyNavbar = ({ setAuth, isAuth }) => {
+  const logout = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    setAuth(false);
+    toast.success("Logged out successfully.");
+  };
+
   return (
     <div>
       {/* bootstrap navbar */}
@@ -18,9 +26,17 @@ const MyNavbar = () => {
             />{" "}
             artExplorer
           </Navbar.Brand>
-          <NavDropdown>
+          <NavDropdown title="Login">
             <NavDropdown.Item href={"/login"}>Login</NavDropdown.Item>
             <NavDropdown.Item href={"/register"}>Get Started</NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item
+              onClick={(e) => {
+                logout(e);
+              }}
+            >
+              Logout
+            </NavDropdown.Item>
           </NavDropdown>
         </Container>
       </Navbar>

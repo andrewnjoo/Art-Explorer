@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { toast } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-toastify/dist/ReactToastify.css";
 import { backendURL } from "./sharedVariables";
 
 //import components
@@ -15,6 +16,7 @@ import SearchArtist from "./components/SearchArtist";
 import MyNavbar from "./components/MyNavbar";
 import Register from "./components/Register";
 import Login from './components/Login'
+import Profile from './components/Profile'
 
 // configure toastify
 toast.configure({
@@ -57,6 +59,7 @@ function App() {
   return (
     <div className="App">
       <MyNavbar isAuth={isAuthenticated} setAuth={setAuth} />
+      <Profile />
       <Router>
         <Switch>
           <Route exact path="/" render={(props) => <SearchArtist />} />

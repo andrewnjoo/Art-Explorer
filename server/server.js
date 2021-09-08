@@ -11,6 +11,9 @@ app.use(express.json()); // recognize request objects as JSON
 // get route
 app.get("/api/getart", controller.getArt);
 
+// add artist
+app.post("/api/addartist", controller.addArtist)
+
 //register and login routes
 app.use("/auth", require("./auth-routes/jwtAuth"));
 
