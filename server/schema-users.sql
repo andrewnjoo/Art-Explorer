@@ -25,3 +25,6 @@ VALUES
 
 -- select users
 SELECT * FROM users;
+
+-- grant privilege to edit users table
+GRANT ALL PRIVILEGES ON TABLE users TO postgres;

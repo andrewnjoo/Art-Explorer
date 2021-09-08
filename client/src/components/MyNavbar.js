@@ -1,5 +1,5 @@
 //import modules
-import { Navbar, Container } from "react-bootstrap";
+import { Navbar, Container, NavDropdown } from "react-bootstrap";
 
 // navbar function
 const MyNavbar = () => {
@@ -7,7 +7,7 @@ const MyNavbar = () => {
     <div>
       {/* bootstrap navbar */}
       <Navbar bg="dark" variant="dark">
-        <Container data-testid='container'>
+        <Container data-testid="container">
           <Navbar.Brand href="#home">
             <img
               alt=""
@@ -18,6 +18,10 @@ const MyNavbar = () => {
             />{" "}
             artExplorer
           </Navbar.Brand>
+          <NavDropdown>
+            <NavDropdown.Item href={"/login"}>Login</NavDropdown.Item>
+            <NavDropdown.Item href={"/register"}>Get Started</NavDropdown.Item>
+          </NavDropdown>
         </Container>
       </Navbar>
     </div>

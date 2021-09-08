@@ -13,7 +13,8 @@ import { backendURL } from "./sharedVariables";
 //import components
 import SearchArtist from "./components/SearchArtist";
 import MyNavbar from "./components/MyNavbar";
-import Register from "./components/Register"
+import Register from "./components/Register";
+import Login from './components/Login'
 
 // configure toastify
 toast.configure({
@@ -58,10 +59,17 @@ function App() {
       <MyNavbar isAuth={isAuthenticated} setAuth={setAuth} />
       <Router>
         <Switch>
+          <Route exact path="/" render={(props) => <SearchArtist />} />
           <Route
-          exact
-          path='/'
-          render={(props)=><SearchArtist/>}
+            exact
+            path="/login"
+            render={(props) =>
+              !isAuthenticated ? (
+                <Login {...props} setAuth={setAuth} />
+              ) : (
+                <Redirect to="/" />
+              )
+            }
           />
           <Route
             exact
