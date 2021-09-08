@@ -1,13 +1,30 @@
 //import dependencies
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import { toast } from "react-toastify";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { backendURL } from "./sharedVariables";
+
+//import components
 import SearchArtist from "./components/SearchArtist";
 import MyNavbar from "./components/MyNavbar";
-import "bootstrap/dist/css/bootstrap.min.css";
+import Register from "./components/Register"
 
-import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
+// configure toastify
+toast.configure({
+  position: "bottom-right",
+  autoClose: 3000,
+  draggable: true,
+  pauseOnHover: false,
+});
 
 function App() {
-  //jwt token
+  //isAuthenticated
   const [isAuthenticated, setisAuthenticated] = useState(false);
 
   const setAuth = (boolean) => {
@@ -38,8 +55,24 @@ function App() {
 
   return (
     <div className="App">
-      <MyNavbar />
-      <SearchArtist />
+      <MyNavbar isAuth={isAuthenticated} setAuth={setAuth} />
+      <Router>
+        <Switch>
+          <Route
+          exact
+          path='/'
+          render={(props)=><SearchArtist/>}
+          />
+          <Route
+            exact
+            path="/register"
+            render={(props) =>
+              !isAuthenticated ? <Register /> : <Redirect to="/" />
+            }
+          />
+        </Switch>
+      </Router>
+      {/* <SearchArtist /> */}
     </div>
   );
 }

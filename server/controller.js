@@ -3,6 +3,8 @@ const router = require("express").Router();
 const pool = require("./db");
 const validInfo = require("./auth-middleware/validInfo");
 const authorization = require("./auth-middleware/authorization");
+require("dotenv").config();
+
 
 //get art
 function getArt(req,res){
