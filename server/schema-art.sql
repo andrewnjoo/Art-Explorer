@@ -25,3 +25,8 @@ DROP TABLE art;
 \dt
 -- display userss
 \du
+
+--insert into art
+INSERT INTO art (name, user_id) 
+VALUES
+('Statue of David', '5993fe32-21d2-445d-b687-e1aff1a5ed36');

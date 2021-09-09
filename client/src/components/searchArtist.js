@@ -1,12 +1,10 @@
 // import modules
 import axios from "axios";
 import { useState } from "react";
+import { AddArtist } from "./AddArtist";
 
 // search artist function
 const SearchArtist = () => {
-  const addToFavs = () => {
-    console.log('test')
-  }
   // artist detail function
   const ArtistDetail = () => {
     if (!searched) {
@@ -15,9 +13,9 @@ const SearchArtist = () => {
       return (
         <div>
           <h4>{result.title}</h4>
-          <button onClick={addToFavs}>add to favs</button>
+          <AddArtist name={result.title}/>
           <br />
-          <a href={result["_links"].permalink.href}>  
+          <a href={result["_links"].permalink.href} target="_blank" rel="noreferrer">  
           <img src={result["_links"].thumbnail.href}></img>
           </a>
           <div id="biography">{bio == '' ? 'no bio available' : bio}</div>
@@ -49,10 +47,8 @@ const SearchArtist = () => {
   const handleKeyDown = async (event) => {
     if (event.key === "Enter") {
       let data = await search(input);
-      console.log("data", data);
       setResult(data);
       let bioURL = data["_links"].self.href;
-      console.log("biourl", bioURL);
       //get artist biography
       const res3 = await axios.get(bioURL, {
         headers: {

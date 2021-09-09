@@ -22,7 +22,7 @@ const Profile = () => {
 
   useEffect(() => {
     getName();
-  }, []);
+  });
     return (
         <div>
             Welcome {name}

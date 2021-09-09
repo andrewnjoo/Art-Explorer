@@ -1,0 +1,1 @@
+nice to have - add loading icon for api load

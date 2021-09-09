@@ -28,6 +28,10 @@ SELECT * FROM users;
 
 -- grant privilege to edit users table
 GRANT ALL PRIVILEGES ON TABLE users TO postgres;
+GRANT ALL PRIVILEGES ON TABLE art TO postgres;
+
+-- check current user
+\conninfo
 
 -- grant more privileges
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO postgres;

@@ -17,6 +17,7 @@ import MyNavbar from "./components/MyNavbar";
 import Register from "./components/Register";
 import Login from './components/Login'
 import Profile from './components/Profile'
+import { FavoriteArtists } from "./components/FavoriteArtists";
 
 // configure toastify
 toast.configure({
@@ -60,6 +61,7 @@ function App() {
     <div className="App">
       <MyNavbar isAuth={isAuthenticated} setAuth={setAuth} />
       <Profile />
+      <FavoriteArtists/>
       <Router>
         <Switch>
           <Route exact path="/" render={(props) => <SearchArtist />} />
@@ -83,7 +85,6 @@ function App() {
           />
         </Switch>
       </Router>
-      {/* <SearchArtist /> */}
     </div>
   );
 }
