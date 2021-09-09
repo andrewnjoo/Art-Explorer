@@ -4,10 +4,10 @@
   "description": "> capstone project at devmtn",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cd client && npm test",
     "client": "cd client && npm i && npm start",
     "server": "cd server && npm i && npm start",
-    "dev": "npm run client & npm run server "
+    "dev": "npm run client & npm run server"
   },
   "repository": {
     "type": "git",

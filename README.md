@@ -30,6 +30,5 @@ npm run dev
 ### run jest tests:
 
 ```
-cd client
-npm run test
+npm test
 ```
