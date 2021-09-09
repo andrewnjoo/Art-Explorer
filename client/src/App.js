@@ -17,7 +17,6 @@ import MyNavbar from "./components/MyNavbar";
 import Register from "./components/Register";
 import Login from './components/Login'
 import Profile from './components/Profile'
-import { GetArtists } from "./components/GetArtists";
 
 // configure toastify
 toast.configure({
@@ -27,16 +26,17 @@ toast.configure({
   pauseOnHover: false,
 });
 
-function App() {
+const App = () => {
   //isAuthenticated
   const [isAuthenticated, setisAuthenticated] = useState(false);
+  const [updated, setUpdated] = useState('')
 
   const setAuth = (boolean) => {
     setisAuthenticated(boolean);
   };
 
   //pass jwt token to middleware in backend to check if authorized
-  async function isAuth() {
+  const isAuth = async () => {
     try {
       const response = await fetch(`${backendURL}auth/is-verify`, {
         method: "GET",
@@ -57,14 +57,17 @@ function App() {
     isAuth();
   }, []);
 
+  useEffect(()=>{
+    console.log('updated is', updated)
+  },[updated])
+
   return (
     <div className="App">
       <MyNavbar isAuth={isAuthenticated} setAuth={setAuth} />
-      <Profile />
-      <GetArtists/>
+      <Profile checkupdate={updated}/>
       <Router>
         <Switch>
-          <Route exact path="/" render={(props) => <SearchArtist />} />
+          <Route exact path="/" render={(props) => <SearchArtist updated={updated} passChildData={setUpdated} />} />
           <Route
             exact
             path="/login"

@@ -1,10 +1,48 @@
 // import modules
 import axios from "axios";
-import { useState } from "react";
-import { AddArtist } from "./AddArtist";
+import React, { useEffect, useState } from "react";
+import { backendURL } from "../sharedVariables";
 
 // search artist function
-const SearchArtist = () => {
+const SearchArtist = ({ updated, passChildData }) => {
+  const AddArtist = ({ name }) => {
+    let [myName, setmyName] = useState("");
+    useEffect(() => {
+      setmyName(name);
+      console.log("test");
+    });
+    const addToFavs = () => {
+      //set headers
+      const headers = {
+        "Content-Type": "application/json",
+        token: localStorage.token,
+      };
+      console.log("test");
+      axios
+        .post(
+          `${backendURL}api/addartist`,
+          {
+            name: myName,
+          },
+          {
+            headers: headers,
+          }
+        )
+        .then((res) => {
+          console.log('added artist', res);
+          if(updated==''){
+            passChildData('yy')
+          } else {
+            passChildData('')
+          }
+        });
+    };
+    return (
+      <>
+        <button onClick={addToFavs}>add to favs</button>
+      </>
+    );
+  };
   // artist detail function
   const ArtistDetail = () => {
     if (!searched) {
@@ -13,12 +51,16 @@ const SearchArtist = () => {
       return (
         <div>
           <h4>{result.title}</h4>
-          <AddArtist name={result.title}/>
+          <AddArtist name={result.title} />
           <br />
-          <a href={result["_links"].permalink.href} target="_blank" rel="noreferrer">  
-          <img src={result["_links"].thumbnail.href}></img>
+          <a
+            href={result["_links"].permalink.href}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src={result["_links"].thumbnail.href}></img>
           </a>
-          <div id="biography">{bio == '' ? 'no bio available' : bio}</div>
+          <div id="biography">{bio == "" ? "no bio available" : bio}</div>
         </div>
       );
     }
@@ -42,7 +84,7 @@ const SearchArtist = () => {
     },
     biography: "",
   });
-  let [bio, setBio] = useState('');
+  let [bio, setBio] = useState("");
 
   const handleKeyDown = async (event) => {
     if (event.key === "Enter") {
@@ -56,7 +98,7 @@ const SearchArtist = () => {
         },
       });
       //console.log(res3)
-      console.log('biography',res3.data.biography);
+      console.log("biography", res3.data.biography);
       setBio(res3.data.biography);
       console.log("bio", bio);
     }
@@ -81,7 +123,6 @@ const SearchArtist = () => {
     );
     console.log("results", res2.data._embedded.results[0]);
     // console.log(res2.data._embedded.results[0].thumbnail);
-
     return res2.data._embedded.results[0];
   };
   return (
