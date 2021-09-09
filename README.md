@@ -6,35 +6,35 @@
 
 Description: full stack (PERN) web app to find your favorite art/artists, and save it in a list.
 
-## Features:
+### Features:
 
 - encrypted login/register
 - postgres db
 - API calls to artsy and to database
 - CRUD functionality (comment on art pieces, save favorites)
 
-## front end tech:
+### Front end tech:
 
 - react
 - axios
 - bootstrap
 - jest
 
-## back end tech:
+### Back end tech:
 
 - nodemon
 - express
 - cors
 - [artsy api](https://developers.artsy.net/)
 
-### quick-start instructions:
+### Quick-start instructions:
 
 ```
 git clone https://github.com/adnjoo/artexplorer
 npm run dev
 ```
 
-### run tests:
+### Run tests:
 
 ```
 npm test

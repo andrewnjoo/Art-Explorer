@@ -9,6 +9,7 @@ export const AddArtist = ({name}) => {
     console.log('test')
   })
   const addToFavs = () => {
+    //set headers
     const headers = {
       "Content-Type": "application/json",
       token: localStorage.token,
