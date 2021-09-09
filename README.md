@@ -10,15 +10,17 @@ Features: encrypted login/register, postgres db, API calls to artsy and to datab
 
 ## front end tech:
 
-react, axios, bootstrap, jest (testing)
+* react
+* axios
+* bootstrap
+* jest
 
 ## back end tech:
 
-nodemon, express, cors
-
-Design: RESTful api
-
-APIs used: [artsy](https://developers.artsy.net/)
+* nodemon
+* express
+* cors
+* [artsy api](https://developers.artsy.net/)
 
 ### quick-start instructions:
 
@@ -27,7 +29,7 @@ git clone https://github.com/adnjoo/artexplorer
 npm run dev
 ```
 
-### run jest tests:
+### run tests:
 
 ```
 npm test
