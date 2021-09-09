@@ -24,16 +24,10 @@ APIs used: [artsy](https://developers.artsy.net/)
 
 ```
 git clone https://github.com/adnjoo/artexplorer
-npm run client
+npm run dev
 ```
 
-in separate terminal window:
-
-```
-npm run server
-```
-
-### (jest) testing instructions:
+### run jest tests:
 
 ```
 cd client
