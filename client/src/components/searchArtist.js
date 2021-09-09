@@ -86,7 +86,7 @@ const SearchArtist = () => {
   };
   return (
     <div className="container text-center border mt-5">
-      <h2>Get some artists</h2>
+      <h2>Search for artists</h2>
       <input
         value={input}
         onChange={(e) => setInput(e.target.value)}

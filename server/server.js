@@ -4,12 +4,15 @@ const cors = require("cors");
 const port = process.env.PORT || 4001; // use either host env port or local port
 const controller = require("./controller");
 
-const app = express(); // let app = new express,
+const app = express(); // let app = new express
 app.use(cors()); //enable cors
 app.use(express.json()); // recognize request objects as JSON
 
-// get route
+// get art
 app.get("/api/getart", controller.getArt);
+
+// get artists 
+app.get("/api/getartists", controller.getArtists);
 
 // add artist
 app.post("/api/addartist", controller.addArtist)

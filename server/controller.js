@@ -25,6 +25,22 @@ const getArt = (req, res) => {
   }
 };
 
+//get artists
+const getArtists = (req, res) => {
+  try {
+    const payload = verify(req.header("token"));
+    req.user = payload.user
+    pool
+      .query("select name from artists where user_id = $1;", [req.user])
+      .then((results) => {
+        console.log(results.data)
+        res.status(200).send(results);
+      });
+  } catch (e) {
+    console.log("error", e);
+  }
+};
+
 //add artist
 const addArtist = async (req, res) => {
   try {
@@ -64,5 +80,6 @@ const addArtist = async (req, res) => {
 
 module.exports = {
   getArt,
+  getArtists,
   addArtist,
 };
