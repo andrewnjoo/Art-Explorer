@@ -4,23 +4,28 @@
 
 <img src='./scrn.png' width='250'>
 
-MVP: PERN full stack web app to find your favorite art, and save it in a list.
+Description: full stack (PERN) web app to find your favorite art/artists, and save it in a list.
 
-Features: encrypted login/register, postgres db, API calls to artsy and to database, CRUD functionality (comment on art pieces, save favorites)
+## Features:
+
+- encrypted login/register
+- postgres db
+- API calls to artsy and to database
+- CRUD functionality (comment on art pieces, save favorites)
 
 ## front end tech:
 
-* react
-* axios
-* bootstrap
-* jest
+- react
+- axios
+- bootstrap
+- jest
 
 ## back end tech:
 
-* nodemon
-* express
-* cors
-* [artsy api](https://developers.artsy.net/)
+- nodemon
+- express
+- cors
+- [artsy api](https://developers.artsy.net/)
 
 ### quick-start instructions:
 
