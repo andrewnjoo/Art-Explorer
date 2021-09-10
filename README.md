@@ -31,6 +31,7 @@ Description: full stack (PERN) web app to find your favorite art/artists, and sa
 
 ```
 git clone https://github.com/adnjoo/artexplorer
+cd artexplorer
 npm run dev
 ```
 
