@@ -79,7 +79,7 @@ const App = () => {
                 </>
                 ) : (
                   <>
-                  <Profile checkupdate={updated} />
+                  <Profile updated={updated} />
                   <SearchArtist updated={updated} passChildData={setUpdated} />
                   </>
               )

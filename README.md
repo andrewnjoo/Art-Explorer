@@ -2,7 +2,7 @@
 
 > capstone project at devmtn
 
-<img src='./scrn.png' width='250'>
+<img src='./scrn2.png' width='250'>
 
 Description: full stack (PERN) web app to find your favorite art/artists, and save it in a list.
 

@@ -1,51 +1,53 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { backendURL } from "../sharedVariables";
 import axios from "axios";
 import { Container } from "react-bootstrap";
 
-
 // profile function
-const Profile = ({checkupdate}) => {
+const Profile = ({ updated }) => {
+  //get artists
+  const GetArtists = () => {
+    let [artists, setArtists] = useState([]);
 
-//get artists
-const GetArtists = () => {
-  let [artists, setArtists] = useState([]);
-  useEffect(() => {
-    getFav();
-  }, [checkupdate]);
-  const mapArtists = () => {
-    return artists.map((x) => {
-      return (
-        <div>
-          <div style={{ display: "inline-block" }}>{x.name}</div>
-          {/* <button>del</button>  */}
-        </div>
-      );
-    });
-  };
-  const getFav = () => {
-    //set headers
-    const headers = {
-      "Content-Type": "application/json",
-      token: localStorage.token,
-    };
-    console.log("test");
-    //make axios call
-    axios
-      .get(`${backendURL}api/getartists`, {
-        "headers": headers,
-      })
-      .then((res) => {
-        setArtists(res.data.rows);
+    //if new artist added, get new favorites from db 
+    useEffect(() => {
+      getFav();
+    }, [updated]);
+
+    const mapArtists = () => {
+      return artists.map((x) => {
+        return (
+          <div>
+            <div style={{ display: "inline-block" }}>{x.name}</div>
+            {/* <button>del</button>  */}
+          </div>
+        );
       });
+    };
+    
+    const getFav = () => {
+      //set headers
+      const headers = {
+        "Content-Type": "application/json",
+        token: localStorage.token,
+      };
+      console.log("test");
+      //make axios call
+      axios
+        .get(`${backendURL}api/getartists`, {
+          headers: headers,
+        })
+        .then((res) => {
+          setArtists(res.data.rows);
+        });
+    };
+    return (
+      <div>
+        My favorite artists:
+        {mapArtists()}
+      </div>
+    );
   };
-  return (
-    <div>
-      My favorite artists:
-      {mapArtists()}
-    </div>
-  );
-};
 
   const [name, setName] = useState("");
 
@@ -71,10 +73,10 @@ const GetArtists = () => {
   return (
     <Container>
       Welcome, {name}!
-      <br/>
-      <br/>
-      <GetArtists/>
-      <div style={{display:'none'}}>{checkupdate}</div>
+      <br />
+      <br />
+      <GetArtists />
+      <div style={{ display: "none" }}>{updated}</div>
     </Container>
   );
 };

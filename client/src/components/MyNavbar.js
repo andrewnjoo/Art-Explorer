@@ -20,9 +20,9 @@ const MyNavbar = ({ setAuth, isAuth }) => {
           <Navbar.Brand href="/">
             <img
               alt=""
-              src="https://raw.githubusercontent.com/adnjoo/capstone/main/assets/mona.jpg"
-              width="30"
-              height="35"
+              src="https://raw.githubusercontent.com/adnjoo/capstone/main/assets/mona2.png"
+              width="25"
+              height="30"
               className="d-inline-block align-top"
             />{" "}
             artExplorer
