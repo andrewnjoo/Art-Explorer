@@ -90,6 +90,12 @@ const SearchArtist = ({ updated, passChildData }) => {
     if (event.key === "Enter") {
       let data = await search(input);
       console.log('data is', data)
+      if(data=='no-artist-found'){
+        let resultCopy = result
+        resultCopy.title = 'artist not found'
+        setResult(resultCopy)
+        return 
+      }
       setResult(data);
       let bioURL = data["_links"].self.href;
       //get artist biography
@@ -122,9 +128,13 @@ const SearchArtist = ({ updated, passChildData }) => {
         },
       }
     );
+    //check type artist
     console.log("results", res2.data._embedded.results[0]);
-    // console.log(res2.data._embedded.results[0].thumbnail);
-    return res2.data._embedded.results[0];
+    if(res2.data._embedded.results[0].type=='artist'){
+      return res2.data._embedded.results[0];
+    } else {
+      return 'no-artist-found'
+    }
   };
   return (
     <div className="container text-center border mt-5">
