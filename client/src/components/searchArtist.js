@@ -89,6 +89,7 @@ const SearchArtist = ({ updated, passChildData }) => {
   const handleKeyDown = async (event) => {
     if (event.key === "Enter") {
       let data = await search(input);
+      console.log('data is', data)
       setResult(data);
       let bioURL = data["_links"].self.href;
       //get artist biography
@@ -114,7 +115,7 @@ const SearchArtist = ({ updated, passChildData }) => {
     xappToken = res.data.token;
     //search artist
     const res2 = await axios.get(
-      `https://api.artsy.net/api/search?q=${input}`,
+      `https://api.artsy.net/api/search?q=${input}+more:pagemap:metatags-og_type:artist`,
       {
         headers: {
           "X-XAPP-Token": xappToken,
