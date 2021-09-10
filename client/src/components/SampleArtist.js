@@ -50,27 +50,6 @@ export const SampleArtist = () => {
 
   return (
     <Container className="mt-3" style={{ textAlign: "center" }}>
-      <Carousel>
-        
-  {/* <Carousel.Item>
-    <img
-      className="d-block"
-      src="https://d32dm0rphc51dk.cloudfront.net/6-yJkIA0QyGHE8nUteBECw/square.jpg"
-      alt="First slide"
-      height='100'
-      width='100'
-    />
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className="d-block"
-      src="https://d32dm0rphc51dk.cloudfront.net/95EYpbkhcWsEKG18njyhCw/square.jpg"
-      alt="Second slide"
-      height='100'
-      width='100'
-    />
-  </Carousel.Item> */}
-</Carousel>
 
       <h4>{artist.title}</h4>
       <br />
