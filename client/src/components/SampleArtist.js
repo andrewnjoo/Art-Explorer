@@ -13,7 +13,12 @@ export const SampleArtist = () => {
     "Raphael",
     "Da Vinci",
     "Banksy",
-    "Paul Gauguin"
+    "Paul Gauguin",
+    "Richard Serra",
+    "David Hockney",
+    "El Greco",
+    "Elmgreen & Dragset",
+    "Michael Heizer"
   ];
   let [artist, setArtist] = useState({
     _links: {
