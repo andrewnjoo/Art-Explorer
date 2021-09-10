@@ -20,6 +20,11 @@ Description: full stack (PERN) web app to find your favorite art/artists, and sa
 - bootstrap
 - jest
 
+
+#### bells & whistles:
+
+- 
+
 ### Back end tech:
 
 - nodemon
