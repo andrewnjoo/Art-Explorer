@@ -19,6 +19,7 @@ import Login from "./components/Login";
 import Profile from "./components/Profile";
 import { SampleArtist } from "./components/SampleArtist";
 
+
 // configure toastify
 toast.configure({
   position: "bottom-right",

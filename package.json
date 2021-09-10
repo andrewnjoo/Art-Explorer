@@ -19,5 +19,6 @@
   "bugs": {
     "url": "https://github.com/adnjoo/artExplorer/issues"
   },
-  "homepage": "https://github.com/adnjoo/artExplorer#readme"
+  "homepage": "https://github.com/adnjoo/artExplorer#readme",
+  "dependencies": {}
 }
