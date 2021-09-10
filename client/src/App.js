@@ -67,6 +67,7 @@ const App = () => {
       <MyNavbar isAuth={isAuthenticated} setAuth={setAuth} />
       <Router>
         <Switch>
+          {/* Homepage */}
           <Route
             exact
             path="/"
@@ -84,6 +85,7 @@ const App = () => {
               )
             }
           />
+          {/* Login Route */}
           <Route
             exact
             path="/login"
@@ -95,6 +97,7 @@ const App = () => {
               )
             }
           />
+          {/* Register Route */}
           <Route
             exact
             path="/register"

@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 
 // navbar function
 const MyNavbar = ({ setAuth, isAuth }) => {
+  // logout function
   const logout = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
@@ -21,7 +22,7 @@ const MyNavbar = ({ setAuth, isAuth }) => {
               alt=""
               src="https://raw.githubusercontent.com/adnjoo/capstone/main/assets/mona.jpg"
               width="30"
-              height="30"
+              height="35"
               className="d-inline-block align-top"
             />{" "}
             artExplorer

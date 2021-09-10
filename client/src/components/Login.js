@@ -1,11 +1,11 @@
 //import dependencies
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Container } from "react-bootstrap";
 import { backendURL } from "../sharedVariables";
 
-
+// login function
 const Login = ({ setAuth }) => {
     const [inputs, setInputs] = useState({
       email: "",
@@ -17,12 +17,12 @@ const Login = ({ setAuth }) => {
     const onChange = (e) =>
       setInputs({ ...inputs, [e.target.name]: e.target.value });
   
+    // onsubmit function
     const onSubmitForm = async (e) => {
       e.preventDefault();
       try {
-        // console.log('test')
         const body = { email, password };
-        console.log(body);
+        // console.log(body);
         const response = await fetch(`${backendURL}auth/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -32,7 +32,6 @@ const Login = ({ setAuth }) => {
         console.log(parseRes);
   
         if (parseRes.token) {
-          // console.log(parseRes)
           // set token in localStorage
           localStorage.setItem("token", parseRes.token);
           setAuth(true);
