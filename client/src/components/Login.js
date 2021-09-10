@@ -46,10 +46,11 @@ const Login = ({ setAuth }) => {
       }
     };
   
+    //demo login
     const demoUser = async () => {
       let body = {
-        email: "bob@gmail.com",
-        password: "bob",
+        email: "demo@demo.com",
+        password: "demo",
       };
       const response = await fetch(`${backendURL}auth/login`, {
         method: "POST",
