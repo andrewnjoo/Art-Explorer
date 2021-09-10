@@ -1,25 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Container } from "react-bootstrap";
-
+import { artists, clientID, clientSecret, apiUrl } from "../sharedVariables";
 export const SampleArtist = () => {
-  let artists = [
-    "KAWS",
-    "Claude Monet",
-    "Van Gogh",
-    "Picasso",
-    "Ai Weiwei",
-    "Tintoretto",
-    "Raphael",
-    "Da Vinci",
-    "Banksy",
-    "Paul Gauguin",
-    "Richard Serra",
-    "David Hockney",
-    "El Greco",
-    "Elmgreen & Dragset",
-    "Michael Heizer"
-  ];
+  
+  let xappToken;
   let [artist, setArtist] = useState({
     _links: {
       permalink: {
@@ -31,17 +16,15 @@ export const SampleArtist = () => {
     },
     biography: "",
   });
-  let apiUrl = "https://api.artsy.net/api/tokens/xapp_token";
-  const clientID = "d7b5e06fed971b560f2f";
-  const clientSecret = "92122aaf680fe0def89ce3bcc6d9d1d5";
-  let xappToken;
+
   useEffect(() => {
     let x = Math.floor(Math.random() * artists.length);
-    console.log("x is", x);
     search(artists[x]);
   }, []);
+
+  //search for artist
   const search = async (input) => {
-    //get token
+    //get auth-token
     const res = await axios.post(apiUrl, {
       client_id: clientID,
       client_secret: clientSecret,
@@ -63,7 +46,7 @@ export const SampleArtist = () => {
   };
 
   return (
-    <Container style={{ textAlign: "center" }}>
+    <Container className="mt-3" style={{ textAlign: "center" }}>
       <h4>{artist.title}</h4>
       <br />
       <a

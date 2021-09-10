@@ -1,7 +1,7 @@
 // import modules
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { backendURL } from "../sharedVariables";
+import { backendURL, clientID, clientSecret, apiUrl } from "../sharedVariables";
 
 // search artist function
 const SearchArtist = ({ updated, passChildData }) => {
@@ -67,9 +67,6 @@ const SearchArtist = ({ updated, passChildData }) => {
   };
 
   // function variables
-  const clientID = "d7b5e06fed971b560f2f";
-  const clientSecret = "92122aaf680fe0def89ce3bcc6d9d1d5";
-  const apiUrl = "https://api.artsy.net/api/tokens/xapp_token";
   let xappToken;
   let [searched, setSearched] = useState(false);
   let [input, setInput] = useState("");

@@ -16,7 +16,7 @@ const MyNavbar = ({ setAuth, isAuth }) => {
       {/* bootstrap navbar */}
       <Navbar bg="dark" variant="dark">
         <Container data-testid="container">
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="/">
             <img
               alt=""
               src="https://raw.githubusercontent.com/adnjoo/capstone/main/assets/mona.jpg"

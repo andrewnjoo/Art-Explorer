@@ -70,7 +70,9 @@ const GetArtists = () => {
   });
   return (
     <Container>
-      Welcome {name}
+      Welcome, {name}!
+      <br/>
+      <br/>
       <GetArtists/>
       <div style={{display:'none'}}>{checkupdate}</div>
     </Container>
