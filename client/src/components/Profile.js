@@ -18,8 +18,8 @@ const Profile = ({ updated }) => {
       return artists.map((x) => {
         return (
           <div>
-            <div style={{ display: "inline-block" }}>{x.name}</div>
-            {/* <button>del</button>  */}
+            <button class='btn btn-link' style={{ display: "inline-block" }}>{x.name}</button>
+            <button class='btn btn-outline-dark'>x</button> 
           </div>
         );
       });

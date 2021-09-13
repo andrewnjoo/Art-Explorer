@@ -9,8 +9,7 @@ Description: full stack (PERN) web app to find your favorite art/artists, and sa
 ### Features:
 
 - encrypted login/register
-- postgres db
-- API calls to artsy and to database
+- API calls to artsy and to db
 - CRUD functionality (comment on art pieces, save favorites)
 
 ### Front end tech:
@@ -28,6 +27,7 @@ Description: full stack (PERN) web app to find your favorite art/artists, and sa
 ### Back end tech:
 
 - nodemon
+- postgres
 - express
 - cors
 - [artsy api](https://developers.artsy.net/)

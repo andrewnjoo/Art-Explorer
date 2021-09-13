@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import { toast } from "react-toastify";
 import { Container } from "react-bootstrap";
 import { backendURL } from "../sharedVariables";
+import { ThreeFiber } from "./ThreeFiber";
 
 //main function
 const Register = ({ setAuth }) => {
@@ -46,6 +47,7 @@ const Register = ({ setAuth }) => {
 
   return (
     <Container className="w-50">
+      <ThreeFiber/>
       <h1 className="text-center my-5">Register</h1>
       {/* Register Form */}
       <form className="mb-3" onSubmit={onSubmitForm}>
