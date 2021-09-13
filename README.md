@@ -10,7 +10,7 @@ Description: full stack (PERN) web app to find your favorite art/artists, and sa
 
 - encrypted login/register
 - API calls to artsy and to db
-- CRUD functionality (comment on art pieces, save favorites)
+- CRUD functionality (add fav artist, delete fav artist)
 
 ### Front end tech:
 

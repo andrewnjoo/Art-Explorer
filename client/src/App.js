@@ -19,7 +19,6 @@ import Login from "./components/Login";
 import Profile from "./components/Profile";
 import { SampleArtist } from "./components/SampleArtist";
 
-
 // configure toastify
 toast.configure({
   position: "bottom-right",
@@ -32,6 +31,7 @@ const App = () => {
   //isAuthenticated
   const [isAuthenticated, setisAuthenticated] = useState(false);
   const [updated, setUpdated] = useState("");
+  const [profileArtistName, setprofileArtistName] = useState('')
 
   const setAuth = (boolean) => {
     setisAuthenticated(boolean);
@@ -59,9 +59,14 @@ const App = () => {
     isAuth();
   }, []);
 
+  //check if data is updated
   useEffect(() => {
     console.log("updated is", updated);
   }, [updated]);
+  //check if profileartistname updated
+  useEffect(() => {
+    console.log("profileartistname is", profileArtistName);
+  }, [profileArtistName]);
 
   return (
     <div className="App">
@@ -75,14 +80,14 @@ const App = () => {
             render={(props) =>
               !isAuthenticated ? (
                 <>
-                <SampleArtist/> 
-                <Login {...props} setAuth={setAuth} />
+                  <SampleArtist />
+                  <Login {...props} setAuth={setAuth} />
                 </>
-                ) : (
-                  <>
-                  <Profile updated={updated} />
-                  <SearchArtist updated={updated} passChildData={setUpdated} />
-                  </>
+              ) : (
+                <>
+                  <Profile updated={updated} setprofileArtistName={setprofileArtistName}/>
+                  <SearchArtist updated={updated} passChildData={setUpdated} profileArtistName={profileArtistName} />
+                </>
               )
             }
           />

@@ -4,7 +4,20 @@ import React, { useEffect, useState } from "react";
 import { backendURL, clientID, clientSecret, apiUrl } from "../sharedVariables";
 
 // search artist function
-const SearchArtist = ({ updated, passChildData }) => {
+const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
+  let [input, setInput] = useState("");
+  //check if profile artist name changed
+  useEffect(() => {
+    setInput(profileArtistName);
+    console.log('new input is', typeof input)
+
+  }, [profileArtistName, input]);
+  //auto search for artist
+  useEffect(()=>{
+    if(input!=''){
+      searchFor(input)
+    }
+  },[input])
   const AddArtist = ({ name }) => {
     let [myName, setmyName] = useState("");
     useEffect(() => {
@@ -29,11 +42,11 @@ const SearchArtist = ({ updated, passChildData }) => {
           }
         )
         .then((res) => {
-          console.log('added artist', res);
-          if(updated==''){
-            passChildData('yy')
+          console.log("added artist", res);
+          if (updated == "") {
+            passChildData("yy");
           } else {
-            passChildData('')
+            passChildData("");
           }
         });
     };
@@ -69,7 +82,6 @@ const SearchArtist = ({ updated, passChildData }) => {
   // function variables
   let xappToken;
   let [searched, setSearched] = useState(false);
-  let [input, setInput] = useState("");
   let [result, setResult] = useState({
     _links: {
       permalink: {
@@ -83,28 +95,33 @@ const SearchArtist = ({ updated, passChildData }) => {
   });
   let [bio, setBio] = useState("");
 
-  const handleKeyDown = async (event) => {
+  const searchFor = async (z) => {
+    // debugger;
+    let data = await search(z);
+    console.log("data is", data);
+    if (data == "no-artist-found") {
+      let resultCopy = result;
+      resultCopy.title = "artist not found";
+      setResult(resultCopy);
+      return;
+    }
+    setResult(data);
+    let bioURL = data["_links"].self.href;
+    //get artist biography
+    const res3 = await axios.get(bioURL, {
+      headers: {
+        "X-XAPP-Token": xappToken,
+      },
+    });
+    //console.log(res3)
+    console.log("biography", res3.data.biography);
+    setBio(res3.data.biography);
+    console.log("bio", bio);
+  }
+
+  const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      let data = await search(input);
-      console.log('data is', data)
-      if(data=='no-artist-found'){
-        let resultCopy = result
-        resultCopy.title = 'artist not found'
-        setResult(resultCopy)
-        return 
-      }
-      setResult(data);
-      let bioURL = data["_links"].self.href;
-      //get artist biography
-      const res3 = await axios.get(bioURL, {
-        headers: {
-          "X-XAPP-Token": xappToken,
-        },
-      });
-      //console.log(res3)
-      console.log("biography", res3.data.biography);
-      setBio(res3.data.biography);
-      console.log("bio", bio);
+      searchFor(input)
     }
   };
   const search = async (input) => {
@@ -127,10 +144,13 @@ const SearchArtist = ({ updated, passChildData }) => {
     );
     //check type artist
     console.log("results", res2.data._embedded.results[0]);
-    if(res2.data._embedded.results[0].type=='artist'){
+    // if(res2.data._embedded.results[0]== undefined){
+    //   return 'undefined'
+    // }
+    if (res2.data._embedded.results[0].type == "artist") {
       return res2.data._embedded.results[0];
     } else {
-      return 'no-artist-found'
+      return "no-artist-found";
     }
   };
   return (
