@@ -6,18 +6,20 @@ import { backendURL, clientID, clientSecret, apiUrl } from "../sharedVariables";
 // search artist function
 const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
   let [input, setInput] = useState("");
+  let [input2, setInput2] = useState("")
   //check if profile artist name changed
   useEffect(() => {
     setInput(profileArtistName);
+    setInput2(profileArtistName)
     console.log('new input is', typeof input)
-
-  }, [profileArtistName, input]);
-  //auto search for artist
+    // searchFor(input)
+  }, [profileArtistName]);
+  // auto search for artist
   useEffect(()=>{
     if(input!=''){
       searchFor(input)
     }
-  },[input])
+  },[input2])
   const AddArtist = ({ name }) => {
     let [myName, setmyName] = useState("");
     useEffect(() => {
@@ -30,7 +32,7 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
         "Content-Type": "application/json",
         token: localStorage.token,
       };
-      console.log("test");
+      // console.log("test");
       axios
         .post(
           `${backendURL}api/addartist`,

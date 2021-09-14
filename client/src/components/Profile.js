@@ -4,32 +4,61 @@ import axios from "axios";
 import { Container } from "react-bootstrap";
 
 // profile function
-const Profile = ({ updated,setprofileArtistName }) => {
+const Profile = ({ updated, setprofileArtistName }) => {
   //get artists
   const GetArtists = () => {
     let [artists, setArtists] = useState([]);
 
-    //if new artist added, get new favorites from db 
+    //if new artist added, get new favorites from db
     useEffect(() => {
       getFav();
     }, [updated]);
 
     //send from profile to app to searchartist
     const dosomething = (x) => {
-      setprofileArtistName(x)
-    }
+      setprofileArtistName(x);
+    };
+    const delArtist = (x) => {
+      const headers = {
+        "Content-Type": "application/json",
+        token: localStorage.token,
+      };
+
+      axios
+        .post(
+          `${backendURL}api/deleteartist`,
+          { name: x },
+          { headers: headers }
+        )
+        .then((res) => {
+          console.log("del artist", res);
+        });
+        //get artists again
+        getFav()
+    };
 
     const mapArtists = () => {
       return artists.map((x) => {
         return (
           <div>
-            <button onClick={()=>dosomething(x.name)} class='btn btn-link' style={{ display: "inline-block" }}>{x.name}</button>
-            <button class='btn btn-outline-dark'>x</button> 
+            <button
+              onClick={() => dosomething(x.name)}
+              class="btn btn-link"
+              style={{ display: "inline-block" }}
+            >
+              {x.name}
+            </button>
+            <button
+              onClick={() => delArtist(x.name)}
+              class="btn btn-outline-dark"
+            >
+              x
+            </button>
           </div>
         );
       });
     };
-    
+
     const getFav = () => {
       //set headers
       const headers = {
@@ -47,7 +76,7 @@ const Profile = ({ updated,setprofileArtistName }) => {
         });
     };
     return (
-      <div style={{minHeight:'200px'}}>
+      <div style={{ minHeight: "200px" }}>
         My favorite artists:
         {mapArtists()}
       </div>
