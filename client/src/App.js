@@ -1,7 +1,7 @@
 //import dependencies
 import React, { useState, useEffect } from "react";
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Switch,
   Route,
   Redirect,

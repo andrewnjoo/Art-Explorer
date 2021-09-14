@@ -12,12 +12,16 @@ const Profile = ({ updated, setprofileArtistName }) => {
     //if new artist added, get new favorites from db
     useEffect(() => {
       getFav();
-    }, [updated]);
+    }, []);
+    
+    // }, []); try this if it doesn't work
 
     //send from profile to app to searchartist
-    const dosomething = (x) => {
+    const changeName = (x) => {
       setprofileArtistName(x);
     };
+
+    //delete artist
     const delArtist = (x) => {
       const headers = {
         "Content-Type": "application/json",
@@ -33,16 +37,17 @@ const Profile = ({ updated, setprofileArtistName }) => {
         .then((res) => {
           console.log("del artist", res);
         });
-        //get artists again
-        getFav()
+      //get artists after deleting from db
+      getFav();
     };
 
+    //map function
     const mapArtists = () => {
       return artists.map((x) => {
         return (
           <div>
             <button
-              onClick={() => dosomething(x.name)}
+              onClick={() => changeName(x.name)}
               class="btn btn-link"
               style={{ display: "inline-block" }}
             >
@@ -59,14 +64,12 @@ const Profile = ({ updated, setprofileArtistName }) => {
       });
     };
 
+    //get artists
     const getFav = () => {
-      //set headers
       const headers = {
         "Content-Type": "application/json",
         token: localStorage.token,
       };
-      // console.log("test");
-      //make axios call
       axios
         .get(`${backendURL}api/getartists`, {
           headers: headers,
@@ -92,8 +95,8 @@ const Profile = ({ updated, setprofileArtistName }) => {
         headers: { token: localStorage.token },
       });
       const parseRes = await response.json();
+      // console.log(parseRes);
 
-      console.log(parseRes);
       //set name
       setName(parseRes.user_name);
     } catch (err) {
@@ -101,9 +104,11 @@ const Profile = ({ updated, setprofileArtistName }) => {
     }
   }
 
+  //get name of user
   useEffect(() => {
     getName();
-  });
+  },[]);
+
   return (
     <Container>
       Welcome, {name}!

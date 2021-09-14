@@ -3,13 +3,41 @@ import { Navbar, Container, NavDropdown } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 // navbar function
-const MyNavbar = ({ setAuth, isAuth }) => {
+const MyNavBar = ({ setAuth, isAuth }) => {
   // logout function
   const logout = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
     setAuth(false);
     toast.success("Logged out successfully.");
+  };
+
+  const GuestDropDown = () => {
+    return (
+      <NavDropdown title="">
+
+        <NavDropdown.Item href={"/login"}>Login</NavDropdown.Item>
+        <NavDropdown.Item href={"/register"}>Get Started</NavDropdown.Item>
+      </NavDropdown>
+    );
+  };
+
+  const UserDropDown = () => {
+    return (
+      <NavDropdown title="">
+        <NavDropdown.Item
+          onClick={(e) => {
+            logout(e);
+          }}
+        >
+          Logout
+        </NavDropdown.Item>
+      </NavDropdown>
+    );
+  };
+
+  const LoggedDropDown = ({ isAuth }) => {
+    return isAuth ? <UserDropDown /> : <GuestDropDown />;
   };
 
   return (
@@ -27,22 +55,11 @@ const MyNavbar = ({ setAuth, isAuth }) => {
             />{" "}
             artExplorer
           </Navbar.Brand>
-          <NavDropdown title="Login">
-            <NavDropdown.Item href={"/login"}>Login</NavDropdown.Item>
-            <NavDropdown.Item href={"/register"}>Get Started</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item
-              onClick={(e) => {
-                logout(e);
-              }}
-            >
-              Logout
-            </NavDropdown.Item>
-          </NavDropdown>
+          <LoggedDropDown isAuth={isAuth} />
         </Container>
       </Navbar>
     </div>
   );
 };
 
-export default MyNavbar;
+export default MyNavBar;

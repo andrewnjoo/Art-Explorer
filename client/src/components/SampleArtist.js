@@ -59,7 +59,6 @@ export const SampleArtist = () => {
       >
         <img src={artist["_links"].thumbnail.href}></img>
       </a>
-      {/* <div id="biography">{bio == "" ? "no bio available" : bio}</div> */}
     </Container>
   );
 };
