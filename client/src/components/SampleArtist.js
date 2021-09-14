@@ -5,7 +5,7 @@ import { Container } from "react-bootstrap";
 import { artists, clientID, clientSecret, apiUrl } from "../sharedVariables";
 
 // sampleartist component
-export const SampleArtist = () => {
+const SampleArtist = () => {
   let xappToken;
   let [artist, setArtist] = useState({
     _links: {
@@ -63,3 +63,5 @@ export const SampleArtist = () => {
     </Container>
   );
 };
+
+export default SampleArtist;

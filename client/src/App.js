@@ -1,6 +1,7 @@
 //import dependencies
 import React, { useState, useEffect } from "react";
 import {
+  //browserrouter or hashrouter
   HashRouter as Router,
   Switch,
   Route,
@@ -17,7 +18,7 @@ import MyNavBar from "./components/MyNavBar";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
-import { SampleArtist } from "./components/SampleArtist";
+import SampleArtist from "./components/SampleArtist";
 
 // configure toastify
 toast.configure({
