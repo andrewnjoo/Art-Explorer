@@ -24,7 +24,7 @@ export const SampleArtist = () => {
     // console.log('test')
     let x = Math.floor(Math.random() * artists.length);
     search(artists[x]);
-  });
+  },[]);
 
   //search for artist
   const search = async (input) => {
