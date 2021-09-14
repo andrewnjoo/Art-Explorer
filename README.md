@@ -4,7 +4,7 @@
 
 <img src='./scrn2.png' width='250'>
 
-Description: full stack (PERN) web app to find your favorite art/artists, and save it in a list.
+Description: full stack (PERN) web app to find your favorite artists using the artsy api.
 
 ### Features:
 
@@ -19,10 +19,9 @@ Description: full stack (PERN) web app to find your favorite art/artists, and sa
 - bootstrap
 - jest
 
-
 #### bells & whistles:
 
-- 
+- three.js
 
 ### Back end tech:
 
