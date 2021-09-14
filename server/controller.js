@@ -41,6 +41,22 @@ const getArtists = (req, res) => {
   }
 };
 
+//delete artist
+const delArtist = async(req,res) =>{
+  try {
+    const payload = verify(req.header("token"));
+    req.user = payload.user;
+    const delQuery = await pool.query('DELETE FROM ARTISTS WHERE name = $1 AND user_id = $2',[
+      req.body.name,
+      req.user
+    ]).then((results)=>{
+      res.status(200).send(results);
+    })
+  } catch (e) {
+    console.log('error', e)
+  }
+}
+
 //add artist
 const addArtist = async (req, res) => {
   try {
@@ -78,8 +94,10 @@ const addArtist = async (req, res) => {
   }
 };
 
+
 module.exports = {
   getArt,
   getArtists,
   addArtist,
+  delArtist
 };
