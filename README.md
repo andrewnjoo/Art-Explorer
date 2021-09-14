@@ -19,7 +19,7 @@ Description: full stack (PERN) web app to find your favorite artists using the a
 - bootstrap
 - jest
 
-#### bells & whistles:
+### Bells & whistles:
 
 - three.js
 
@@ -30,6 +30,11 @@ Description: full stack (PERN) web app to find your favorite artists using the a
 - express
 - cors
 - [artsy api](https://developers.artsy.net/)
+
+### Deployment
+
+- front end [netlify](https://artexplorer-1.netlify.app/)
+- back end [heroku](https://protected-reaches-25441.herokuapp.com/)
 
 ### Quick-start instructions:
 
