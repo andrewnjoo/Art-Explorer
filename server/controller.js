@@ -12,7 +12,7 @@ const verify = (input) => {
 };
 
 const testRoute = (req,res) =>{
-  res.status(200).send('test route')
+  res.status(200).send('artexplorer - test route')
 }
 
 //get art
