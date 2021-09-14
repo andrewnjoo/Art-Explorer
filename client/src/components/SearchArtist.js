@@ -147,16 +147,14 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
       }
     );
     //check type artist
-    console.log("results", res2.data._embedded.results[0]);
-    // if(res2.data._embedded.results[0]== undefined){
-    //   return 'undefined'
-    // }
+    // console.log("results", res2.data._embedded.results[0]);
     if (res2.data._embedded.results[0].type === "artist") {
       return res2.data._embedded.results[0];
     } else {
       return "no-artist-found";
     }
   };
+
   return (
     <div className="container text-center border mt-5">
       <h2>Search for artists</h2>
