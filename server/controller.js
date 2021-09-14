@@ -11,6 +11,10 @@ const verify = (input) => {
   return jwt.verify(input, process.env.jwtSecret);
 };
 
+const testRoute = (req,res) =>{
+  res.status(200).send('test route')
+}
+
 //get art
 const getArt = (req, res) => {
   try {
@@ -99,5 +103,6 @@ module.exports = {
   getArt,
   getArtists,
   addArtist,
-  delArtist
+  delArtist,
+  testRoute
 };

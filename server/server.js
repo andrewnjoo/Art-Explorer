@@ -9,7 +9,7 @@ app.use(cors()); //enable cors
 app.use(express.json()); // recognize request objects as JSON
 
 //test route
-
+app.get('/', controller.testRoute)
 
 // get art
 app.get("/api/getart", controller.getArt);
