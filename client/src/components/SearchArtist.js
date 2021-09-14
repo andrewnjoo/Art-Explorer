@@ -11,21 +11,22 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
   useEffect(() => {
     setInput(profileArtistName);
     setInput2(profileArtistName)
-    console.log('new input is', typeof input)
     // searchFor(input)
   }, [profileArtistName]);
   // auto search for artist
   useEffect(()=>{
-    if(input!=''){
+    if(input!==''){
       searchFor(input)
     }
   },[input2])
   const AddArtist = ({ name }) => {
     let [myName, setmyName] = useState("");
+
+    //useffect
     useEffect(() => {
       setmyName(name);
-      console.log("test");
-    });
+    },[]);
+
     const addToFavs = () => {
       //set headers
       const headers = {
@@ -45,7 +46,7 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
         )
         .then((res) => {
           console.log("added artist", res);
-          if (updated == "") {
+          if (updated === "") {
             passChildData("yy");
           } else {
             passChildData("");
@@ -73,9 +74,9 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
             target="_blank"
             rel="noreferrer"
           >
-            <img src={result["_links"].thumbnail.href}></img>
+            <img alt='thumbnail' src={result["_links"].thumbnail.href}></img>
           </a>
-          <div id="biography">{bio == "" ? "no bio available" : bio}</div>
+          <div id="biography">{bio === "" ? "no bio available" : bio}</div>
         </div>
       );
     }
@@ -101,7 +102,7 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
     // debugger;
     let data = await search(z);
     console.log("data is", data);
-    if (data == "no-artist-found") {
+    if (data === "no-artist-found") {
       let resultCopy = result;
       resultCopy.title = "artist not found";
       setResult(resultCopy);
@@ -149,7 +150,7 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
     // if(res2.data._embedded.results[0]== undefined){
     //   return 'undefined'
     // }
-    if (res2.data._embedded.results[0].type == "artist") {
+    if (res2.data._embedded.results[0].type === "artist") {
       return res2.data._embedded.results[0];
     } else {
       return "no-artist-found";

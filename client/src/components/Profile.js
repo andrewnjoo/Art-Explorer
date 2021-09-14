@@ -13,7 +13,7 @@ const Profile = ({ updated, setprofileArtistName }) => {
     useEffect(() => {
       getFav();
     }, []);
-    
+
     // }, []); try this if it doesn't work
 
     //send from profile to app to searchartist
@@ -45,17 +45,17 @@ const Profile = ({ updated, setprofileArtistName }) => {
     const mapArtists = () => {
       return artists.map((x) => {
         return (
-          <div>
+          <div key={x.name}>
             <button
               onClick={() => changeName(x.name)}
-              class="btn btn-link"
+              className="btn btn-link"
               style={{ display: "inline-block" }}
             >
               {x.name}
             </button>
             <button
               onClick={() => delArtist(x.name)}
-              class="btn btn-outline-dark"
+              className="btn btn-outline-dark"
             >
               x
             </button>

@@ -1,7 +1,7 @@
 // import dependencies
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Container, Carousel } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { artists, clientID, clientSecret, apiUrl } from "../sharedVariables";
 
 // sampleartist component
@@ -57,7 +57,7 @@ export const SampleArtist = () => {
         target="_blank"
         rel="noreferrer"
       >
-        <img src={artist["_links"].thumbnail.href}></img>
+        <img alt='thumbnail' src={artist["_links"].thumbnail.href}></img>
       </a>
     </Container>
   );
