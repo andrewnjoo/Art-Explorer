@@ -8,6 +8,9 @@ const app = express(); // let app = new express
 app.use(cors()); //enable cors
 app.use(express.json()); // recognize request objects as JSON
 
+//test route
+
+
 // get art
 app.get("/api/getart", controller.getArt);
 

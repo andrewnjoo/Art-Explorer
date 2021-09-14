@@ -1,5 +1,5 @@
-const backendURL = "http://localhost:4001/"; //local
-// const backendURL = "***/"; //prod
+// const backendURL = "http://localhost:4001/"; //local
+const backendURL = "https://protected-reaches-25441.herokuapp.com/"; //prod
 
 const clientID = "d7b5e06fed971b560f2f";
 const clientSecret = "92122aaf680fe0def89ce3bcc6d9d1d5";
