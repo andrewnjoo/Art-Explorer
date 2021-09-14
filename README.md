@@ -31,9 +31,9 @@ Description: full stack (PERN) web app to find your favorite artists using the a
 - cors
 - [artsy api](https://developers.artsy.net/)
 
-### Deployment
+### [Deployment](https://artexplorer-1.netlify.app/)
 
-- front end [netlify](https://artexplorer-1.netlify.app/)
+- front end netlify
 - back end [heroku](https://protected-reaches-25441.herokuapp.com/)
 
 ### Quick-start instructions:

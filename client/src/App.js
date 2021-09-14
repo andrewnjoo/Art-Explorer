@@ -13,7 +13,7 @@ import { backendURL } from "./sharedVariables";
 
 //import components
 import SearchArtist from "./components/SearchArtist";
-import MyNavbar from "./components/MyNavbar";
+import MyNavBar from "./components/MyNavBar";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
@@ -64,7 +64,7 @@ const App = () => {
   useEffect(() => {
     console.log("updated is", updated);
   }, [updated]);
-  
+
   //check if profileartistname updated
   useEffect(() => {
     console.log("profileartistname is", profileArtistName);
@@ -72,7 +72,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <MyNavbar isAuth={isAuthenticated} setAuth={setAuth} />
+      <MyNavBar isAuth={isAuthenticated} setAuth={setAuth} />
       <Router>
         <Switch>
           {/* Homepage */}
