@@ -4,9 +4,8 @@ import axios from "axios";
 import { Container, Carousel } from "react-bootstrap";
 import { artists, clientID, clientSecret, apiUrl } from "../sharedVariables";
 
-
+// sampleartist component
 export const SampleArtist = () => {
-
   let xappToken;
   let [artist, setArtist] = useState({
     _links: {
@@ -20,6 +19,7 @@ export const SampleArtist = () => {
     biography: "",
   });
 
+  //choose random artist
   useEffect(() => {
     let x = Math.floor(Math.random() * artists.length);
     search(artists[x]);
@@ -50,7 +50,6 @@ export const SampleArtist = () => {
 
   return (
     <Container className="mt-3" style={{ textAlign: "center" }}>
-
       <h4>{artist.title}</h4>
       <br />
       <a

@@ -1,9 +1,13 @@
 #CRA .gitignore
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+
+# don't forget to add env (by commenting out) when deploying to heroku, so secret can be read
+.env
+
 # dependencies
 node_modules/
-# .env
+
 /.pnp
 .pnp.js
 

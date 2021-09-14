@@ -6,6 +6,7 @@ const clientID = "d7b5e06fed971b560f2f";
 const clientSecret = "92122aaf680fe0def89ce3bcc6d9d1d5";
 let apiUrl = "https://api.artsy.net/api/tokens/xapp_token";
 
+// sample artists
 const artists = [
   "KAWS",
   "Claude Monet",
@@ -22,6 +23,12 @@ const artists = [
   "El Greco",
   "Elmgreen & Dragset",
   "Michael Heizer",
+  "Jean-Michel Basquiat",
+  "Cai Guo-Qiang 蔡国强",
+  "Auguste Rodin",
+  "Michelangelo Buonarroti",
+  "Andy Warhol",
+  "Yves Klein"
 ];
 
 export {

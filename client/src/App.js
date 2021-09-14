@@ -1,7 +1,7 @@
 //import dependencies
 import React, { useState, useEffect } from "react";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Redirect,
@@ -27,6 +27,7 @@ toast.configure({
   pauseOnHover: false,
 });
 
+//main app
 const App = () => {
   //isAuthenticated
   const [isAuthenticated, setisAuthenticated] = useState(false);
@@ -63,6 +64,7 @@ const App = () => {
   useEffect(() => {
     console.log("updated is", updated);
   }, [updated]);
+  
   //check if profileartistname updated
   useEffect(() => {
     console.log("profileartistname is", profileArtistName);
