@@ -34,7 +34,11 @@ const artists = [
   "Jackson Pollock",
   "Georgia O’Keeffe",
   "Wassily Kandinsky",
-  "Norman Rockwell"
+  "Norman Rockwell",
+  "Takashi Murakami",
+  "Yayoi Kusama",
+  "Marina Abramović",
+  "Lee Bul"
 ];
 
 export {
