@@ -8,49 +8,44 @@ let apiUrl = "https://api.artsy.net/api/tokens/xapp_token";
 
 // sample artists
 const artists = [
-  "KAWS",
-  "Claude Monet",
-  "Van Gogh",
-  "Picasso",
   "Ai Weiwei",
-  "Tintoretto",
-  "Raphael",
-  "Da Vinci",
+  "Andy Warhol",
+  "Auguste Rodin",
   "Banksy",
-  "Paul Gauguin",
-  "Richard Serra",
+  "Cai Guo-Qiang 蔡国强",
+  "Claude Monet",
+  "Da Vinci",
   "David Hockney",
   "El Greco",
-  // "Elmgreen & Dragset",
-  // "Michael Heizer", bugs
-  "Jean-Michel Basquiat",
-  "Cai Guo-Qiang 蔡国强",
-  "Auguste Rodin",
-  "Michelangelo Buonarroti",
-  "Andy Warhol",
-  "Yves Klein",
-  "Joseph Beuys",
-  "Mark Rothko",
-  "Jackson Pollock",
+  "Elmgreen & Dragset",
   "Georgia O’Keeffe",
-  "Wassily Kandinsky",
-  "Norman Rockwell",
-  "Takashi Murakami",
-  "Yayoi Kusama",
+  "Jackson Pollock",
+  "Jean-Michel Basquiat",
+  "Joseph Beuys",
+  "KAWS",
+  "Lee Bul",
   "Marina Abramović",
-  "Lee Bul"
+  "Mark Rothko",
+  "Michael Heizer",
+  "Michelangelo Buonarroti",
+  "Norman Rockwell",
+  "Paul Gauguin",
+  "Picasso",
+  "Raphael",
+  "Richard Serra",
+  "Takashi Murakami",
+  "Tintoretto",
+  "Van Gogh",
+  "Wassily Kandinsky",
+  "Yayoi Kusama",
+  "Yves Klein",
 ];
 
-const artImages = [
-  'https://d32dm0rphc51dk.cloudfront.net/X9vVvod7QY73ZwLDSZzljw/square.jpg',
-  'https://raw.githubusercontent.com/adnjoo/artExplorer/main/assets/mona2.png'
-]
+console.log(artists.sort());
 
-export {
-    backendURL,
-    client_id,
-    client_secret,
-    apiUrl,
-    artists,
-    artImages
-}
+const artImages = [
+  "https://d32dm0rphc51dk.cloudfront.net/X9vVvod7QY73ZwLDSZzljw/square.jpg",
+  "https://raw.githubusercontent.com/adnjoo/artExplorer/main/assets/mona2.png",
+];
+
+export { backendURL, client_id, client_secret, apiUrl, artists, artImages };

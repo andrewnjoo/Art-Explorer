@@ -105,11 +105,11 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
     biography: "",
   });
   let [bio, setBio] = useState("");
-  let [randomArtist, setrandomArtist] = useState('')
+  let [randomArtist, setrandomArtist] = useState("");
 
-  useEffect(()=>{
-    getRandomArtist()
-  },[])
+  useEffect(() => {
+    getRandomArtist();
+  }, []);
 
   const searchFor = async (z) => {
     // debugger;
@@ -158,28 +158,33 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
         },
       }
     );
-    //check type artist
-    // console.log("results", res2.data._embedded.results[0]);
-    if (res2.data._embedded.results[0].type === "artist") {
-      return res2.data._embedded.results[0];
-    } else {
-      return "no-artist-found";
+    console.log(res2.data._embedded);
+    // loop and search for artist
+    for (let i in res2.data._embedded.results) {
+      if (res2.data._embedded.results[i].type === "artist") {
+        return res2.data._embedded.results[i];
+      }
     }
+    // if not artist found
+    return "no-artist-found";
   };
   const getRandomArtist = () => {
-    setrandomArtist(artists[Math.floor(Math.random()*artists.length)])
-  }
+    setrandomArtist(artists[Math.floor(Math.random() * artists.length)]);
+  };
   if (!searched) {
     return (
       <div className="container text-center border mt-5">
         <h2>Search for artists</h2>
-        <h4 onClick={()=>{
-          searchFor(randomArtist)
-          getRandomArtist()
-        }
-          }>e.g. &nbsp;
-          {randomArtist}</h4>
-        <br/>
+        <h4
+          onClick={() => {
+            searchFor(randomArtist);
+            getRandomArtist();
+          }}
+        >
+          e.g. &nbsp;
+          {randomArtist}
+        </h4>
+        <br />
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -191,19 +196,22 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
     return (
       <div className="container text-center border my-2">
         <h2>Search for artists</h2>
-        <h4 onClick={()=>{
-          searchFor(randomArtist)
-          getRandomArtist()
-        }
-          }>e.g. &nbsp;
-          {randomArtist}</h4>
+        <h4
+          onClick={() => {
+            searchFor(randomArtist);
+            getRandomArtist();
+          }}
+        >
+          e.g. &nbsp;
+          {randomArtist}
+        </h4>
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
         />
         <ArtistDetail />
-        <div className='mb-5'></div> 
+        <div className="mb-5"></div>
       </div>
     );
   }
