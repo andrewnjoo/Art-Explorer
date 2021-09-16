@@ -2,8 +2,8 @@
 const backendURL = "https://protected-reaches-25441.herokuapp.com/"; //prod
 
 //artsy
-const clientID = "d7b5e06fed971b560f2f";
-const clientSecret = "92122aaf680fe0def89ce3bcc6d9d1d5";
+const client_id = "d7b5e06fed971b560f2f";
+const client_secret = "92122aaf680fe0def89ce3bcc6d9d1d5";
 let apiUrl = "https://api.artsy.net/api/tokens/xapp_token";
 
 // sample artists
@@ -33,8 +33,8 @@ const artists = [
 
 export {
     backendURL,
-    clientID,
-    clientSecret,
+    client_id,
+    client_secret,
     apiUrl,
     artists
 }

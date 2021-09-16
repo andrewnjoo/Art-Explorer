@@ -37,10 +37,6 @@ const App = () => {
   const [updated, setUpdated] = useState("");
   const [profileArtistName, setprofileArtistName] = useState('')
 
-  const setAuth = (boolean) => {
-    setisAuthenticated(boolean);
-  };
-
   //pass jwt token to middleware in backend to check if authorized
   const isAuth = async () => {
     try {
@@ -53,6 +49,8 @@ const App = () => {
       // console.log('parseres', parseRes)
 
       parseRes === true ? setisAuthenticated(true) : setisAuthenticated(false);
+      // console.log('isAuth?',isAuthenticated)
+
     } catch (err) {
       console.error(err.message);
     }
@@ -75,7 +73,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <MyNavBar isAuth={isAuthenticated} setAuth={setAuth} />
+      <MyNavBar isAuth={isAuthenticated} setAuth={setisAuthenticated} />
       <Router>
         <Switch>
           {/* Homepage */}
@@ -85,8 +83,7 @@ const App = () => {
             render={(props) =>
               !isAuthenticated ? (
                 <>
-                  <SampleArtist />
-                  <Login {...props} setAuth={setAuth} />
+                  <Login {...props} setAuth={setisAuthenticated} />
                 </>
               ) : (
                 <>
@@ -102,7 +99,7 @@ const App = () => {
             path="/login"
             render={(props) =>
               !isAuthenticated ? (
-                <Login {...props} setAuth={setAuth} />
+                <Login {...props} setAuth={setisAuthenticated} />
               ) : (
                 <Redirect to="/" />
               )
@@ -114,7 +111,7 @@ const App = () => {
             path="/register"
             render={(props) =>
               !isAuthenticated ? (
-                <Register setAuth={setAuth} />
+                <Register setAuth={setisAuthenticated} />
               ) : (
                 <Redirect to="/" />
               )
@@ -126,9 +123,9 @@ const App = () => {
           path="/art"
           render={(props)=>
             !isAuthenticated ? (  //false? go to
-              <Login {...props} setAuth={setAuth} />
+              <Artworks setAuth={setisAuthenticated} />
               ) : (
-              <Artworks setAuth={setAuth} />
+              <Artworks setAuth={setisAuthenticated} />
             )
           }
           />
@@ -138,9 +135,9 @@ const App = () => {
           path="/artists"
           render={(props)=>
             !isAuthenticated ? (  //false? go to
-              <Login {...props} setAuth={setAuth} />
+              <Artists setAuth={setisAuthenticated} />
               ) : (
-              <Artists setAuth={setAuth} />
+              <Artists setAuth={setisAuthenticated} />
             )
           }
           />

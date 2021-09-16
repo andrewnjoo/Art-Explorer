@@ -1,7 +1,7 @@
 // import modules
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { backendURL, clientID, clientSecret, apiUrl } from "../sharedVariables";
+import { backendURL, client_id, client_secret, apiUrl } from "../sharedVariables";
 
 // search artist function
 const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
@@ -133,8 +133,8 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
     console.log(searched);
     //get token
     const res = await axios.post(apiUrl, {
-      client_id: clientID,
-      client_secret: clientSecret,
+      client_id,
+      client_secret,
     });
     xappToken = res.data.token;
     //search artist

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Container } from "react-bootstrap";
 import { backendURL } from "../sharedVariables";
+import SampleArtist from "./SampleArtist";
 
 // login function
 const Login = ({ setAuth }) => {
@@ -70,6 +71,7 @@ const Login = ({ setAuth }) => {
     return (
       <Container className="my-5 w-50" 
       >
+        <SampleArtist />
         <h1 className="text-center">Login</h1>
         {/* Login Form */}
         <form className="text-center mt-5 mb-3" onSubmit={onSubmitForm}>
