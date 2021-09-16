@@ -1,8 +1,15 @@
-import React, { useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import React, { useRef, useState, Suspense } from "react";
+import { Canvas, useFrame, useLoader } from "@react-three/fiber";
+import { TextureLoader } from 'three/src/loaders/TextureLoader.js'
 
 export const ThreeFiber = () => {
   function Box(props) {
+    const base = useLoader(
+      TextureLoader,
+      "https://stickershop.line-scdn.net/stickershop/v1/product/1217051/LINEStorePC/main.png"
+      // "https://raw.githubusercontent.com/adnjoo/artExplorer/main/assets/mona.jpg"
+    );
+
     // This reference will give us direct access to the THREE.Mesh object
     const ref = useRef();
     // Set up state for the hovered and active state
@@ -10,18 +17,17 @@ export const ThreeFiber = () => {
     const [active, setActive] = useState(false);
     // Subscribe this component to the render-loop, rotate the mesh every frame
     useFrame((state, delta) => (ref.current.rotation.y += 0.005));
-    // Return the view, these are regular Threejs elements expressed in JSX
+
     return (
-      <mesh
-        {...props}
-        ref={ref}
-        scale={active ? 4.5 : 3}
-        onClick={(event) => setActive(!active)}
-        onPointerOver={(event) => setHover(true)}
-        onPointerOut={(event) => setHover(false)}
-      >
+      <mesh {...props} ref={ref} scale={active ? 4.5 : 3}>
         <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
+        {
+          // base &&
+          <meshStandardMaterial
+            attach="material"
+            // map={base}
+          />
+        }
       </mesh>
     );
   }
@@ -35,10 +41,12 @@ export const ThreeFiber = () => {
         outline: "1px solid black",
       }}
     >
-      <Canvas>
+      <Canvas mode="concurrent">
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
-        <Box position={[0, 0, 0]} />
+        <Suspense>
+          <Box position={[0, 0, 0]} />
+        </Suspense>
       </Canvas>
     </div>
   );
