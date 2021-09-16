@@ -203,7 +203,6 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
           onKeyDown={handleKeyDown}
         />
         <ArtistDetail />
-        {/* margin bottom */}
         <div className='mb-5'></div> 
       </div>
     );
