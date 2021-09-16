@@ -21,7 +21,7 @@ const artists = [
   "Richard Serra",
   "David Hockney",
   "El Greco",
-  "Elmgreen & Dragset",
+  // "Elmgreen & Dragset",
   // "Michael Heizer", bugs
   "Jean-Michel Basquiat",
   "Cai Guo-Qiang 蔡国强",

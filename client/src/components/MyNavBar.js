@@ -8,6 +8,7 @@ import { User_GetName } from "./User_GetName";
 // navbar function
 const MyNavBar = ({ setAuth, isAuth }) => {
   let [name, setName] = useState("");
+  let [trigger, setTrigger] = useState("");
   // logout function
   const logout = (e) => {
     e.preventDefault();
@@ -15,6 +16,10 @@ const MyNavBar = ({ setAuth, isAuth }) => {
     setAuth(false);
     toast.success("Logged out successfully.");
   };
+  //when isAuth changes get name
+  useEffect(()=>{
+    setTrigger('aa')
+  },[isAuth])
 
   const GuestDropDown = () => {
     return (
@@ -69,7 +74,7 @@ const MyNavBar = ({ setAuth, isAuth }) => {
           <LoggedDropDown isAuth={isAuth} />
         </Container>
       </Navbar>
-      <User_GetName setName={setName} />
+      <User_GetName trigger={trigger} setName={setName} />
     </div>
   );
 };

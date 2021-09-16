@@ -36,9 +36,9 @@ const Dashboard = ({ updated, setprofileArtistName, isAuthenticated }) => {
         )
         .then((res) => {
           console.log("del artist", res);
+          getFav();
         });
       //get artists after deleting from db
-      getFav();
     };
 
     //map function
@@ -81,9 +81,9 @@ const Dashboard = ({ updated, setprofileArtistName, isAuthenticated }) => {
 
     if (isAuthenticated) {
       return (
-        <Card>
+        <Card className='text-center'>
           <Card.Body>
-            My favorite artists:
+            <Card.Title>My favorite artists:</Card.Title>
             {mapArtists()}
           </Card.Body>
         </Card>
