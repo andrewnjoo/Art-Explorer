@@ -1,24 +1,22 @@
-import React, {useEffect} from 'react'
-import axios from 'axios'
-import returnXappToken from './artsy/artsy-auth'
+import React, { useEffect } from "react";
+import axios from "axios";
+import returnXappToken from "./artsy/artsy-auth";
+import { Container } from "react-bootstrap";
 
-const Artworks = ({setAuth}) => {
+const Artworks = ({ setAuth }) => {
+  const getArt = () => {
+    let xappToken = returnXappToken();
+  };
 
-    const getArt = () => {
-        let xappToken = returnXappToken()
-        console.log(xappToken)
-    }
+  useEffect(() => {
+    // getArt()
+  }, []);
 
-    useEffect(() => {
-        getArt()
-    }, [])
+  return (
+    <div>
+      <Container className='text-center my-5'>Artworks</Container>
+    </div>
+  );
+};
 
-    return (
-        <div>
-                art
-                lots of art
-        </div>
-    )
-}
-
-export default Artworks
+export default Artworks;
