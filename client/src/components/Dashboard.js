@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { backendURL } from "../sharedVariables";
 import axios from "axios";
-import { Container } from "react-bootstrap";
+import { Container, Card } from "react-bootstrap";
 
 // profile function
 const Dashboard = ({ updated, setprofileArtistName, isAuthenticated }) => {
@@ -81,15 +81,15 @@ const Dashboard = ({ updated, setprofileArtistName, isAuthenticated }) => {
 
     if (isAuthenticated) {
       return (
-        <div style={{ minHeight: "200px" }}>
-          My favorite artists:
-          {mapArtists()}
-        </div>
+        <Card>
+          <Card.Body>
+            My favorite artists:
+            {mapArtists()}
+          </Card.Body>
+        </Card>
       );
     } else {
-      return <div className='text-center'>
-        Login to save artists 
-      </div>;
+      return <div className="text-center">Login to save artists</div>;
     }
   };
 
