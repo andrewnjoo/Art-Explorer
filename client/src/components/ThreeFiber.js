@@ -6,7 +6,9 @@ import {artImages} from '../sharedVariables'
 
 const photo = artImages[Math.floor(Math.random()*artImages.length)]
 console.log('photo', photo)
-const texture = new THREE.TextureLoader().load('https://d32dm0rphc51dk.cloudfront.net/-biSpkdpnHtjCKo_mDRCNQ/square.jpg')
+const texture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/adnjoo/artExplorer/main/assets/mona2.png')
+const texture1 = new THREE.TextureLoader().load('https://raw.githubusercontent.com/adnjoo/artExplorer/main/assets/kandinsky.png')
+
 
 export const ThreeFiber = () => {
   function Box(props) {
@@ -16,19 +18,25 @@ export const ThreeFiber = () => {
     const [active, setActive] = useState(false)
     // Subscribe this component to the render-loop, rotate the mesh every frame
     useFrame((state, delta) => (ref.current.rotation.y += 0.005))
+    // useFrame((state, delta) => (ref.current.rotation.x += 0.005))
     return (
       <mesh
       {...props}
       ref={ref}
-      scale={active ? 4.5 : 3}
+      scale={active ? 6 : 4.5}
       onClick={(event) => setActive(!active)}
       onPointerOver={(event) => setHover(true)}
       onPointerOut={(event) => setHover(false)}>
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial 
       map={texture}
-      // color={hovered ? 'hotpink' : 'orange'}
+      attach="material"
        />
+      <meshStandardMaterial 
+      map={texture1}
+      attach="material"
+       />
+      
     </mesh>
     );
   }
