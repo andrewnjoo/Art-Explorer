@@ -7,7 +7,7 @@ import {artImages} from '../sharedVariables'
 const photo = artImages[Math.floor(Math.random()*artImages.length)]
 console.log('photo', photo)
 const textures = []
-const texture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/adnjoo/artExplorer/main/assets/mona2.png')
+const texture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/adnjoo/artExplorer/main/assets/ape1.png')
 const texture1 = new THREE.TextureLoader().load('https://raw.githubusercontent.com/adnjoo/artExplorer/main/assets/kandinsky.png')
 const texture2 = new THREE.TextureLoader().load('https://raw.githubusercontent.com/adnjoo/artExplorer/main/assets/flowers.png')
 const t3 = new THREE.TextureLoader().load('https://raw.githubusercontent.com/adnjoo/artExplorer/main/assets/ape1.png')
