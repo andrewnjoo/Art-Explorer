@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import returnXappToken from "./artsy/artsy-auth";
 import { Container } from "react-bootstrap";
-import { ThreeFiber } from "./ThreeFiber";
+import {ThreeFiber} from "./ThreeFiber";
 
 const Artworks = ({ setAuth }) => {
   const getArt = () => {

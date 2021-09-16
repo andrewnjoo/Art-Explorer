@@ -41,10 +41,16 @@ const artists = [
   "Lee Bul"
 ];
 
+const artImages = [
+  'https://d32dm0rphc51dk.cloudfront.net/X9vVvod7QY73ZwLDSZzljw/square.jpg',
+  'https://raw.githubusercontent.com/adnjoo/artExplorer/main/assets/mona2.png'
+]
+
 export {
     backendURL,
     client_id,
     client_secret,
     apiUrl,
-    artists
+    artists,
+    artImages
 }
