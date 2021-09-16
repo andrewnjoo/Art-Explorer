@@ -15,6 +15,7 @@ const artists = [
   "Cai Guo-Qiang 蔡国强",
   "Claude Monet",
   "Da Vinci",
+  "Damien Hirst",
   "David Hockney",
   "El Greco",
   "Elmgreen & Dragset",
