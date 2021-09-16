@@ -33,7 +33,8 @@ const artists = [
   "Mark Rothko",
   "Jackson Pollock",
   "Georgia O’Keeffe",
-  "Wassily Kandinsky"
+  "Wassily Kandinsky",
+  "Norman Rockwell"
 ];
 
 export {
