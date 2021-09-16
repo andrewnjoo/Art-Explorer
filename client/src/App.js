@@ -18,9 +18,9 @@ import MyNavBar from "./components/MyNavBar";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
-import SampleArtist from "./components/SampleArtist";
 import Artworks from "./components/Artworks";
-import Artists from './components/Artists'
+import Artists from "./components/Artists";
+import Profile from "./components/Profile";
 
 // configure toastify
 toast.configure({
@@ -35,7 +35,7 @@ const App = () => {
   //isAuthenticated
   const [isAuthenticated, setisAuthenticated] = useState(false);
   const [updated, setUpdated] = useState("");
-  const [profileArtistName, setprofileArtistName] = useState('')
+  const [profileArtistName, setprofileArtistName] = useState("");
 
   //pass jwt token to middleware in backend to check if authorized
   const isAuth = async () => {
@@ -50,7 +50,6 @@ const App = () => {
 
       parseRes === true ? setisAuthenticated(true) : setisAuthenticated(false);
       // console.log('isAuth?',isAuthenticated)
-
     } catch (err) {
       console.error(err.message);
     }
@@ -80,18 +79,20 @@ const App = () => {
           <Route
             exact
             path="/"
-            render={(props) =>
-              !isAuthenticated ? (
-                <>
-                  <Login {...props} setAuth={setisAuthenticated} />
-                </>
-              ) : (
-                <>
-                  <Dashboard updated={updated} setprofileArtistName={setprofileArtistName}/>
-                  <SearchArtist updated={updated} passChildData={setUpdated} profileArtistName={profileArtistName} />
-                </>
-              )
-            }
+            render={() => (
+              <>
+                <Dashboard
+                  isAuthenticated={isAuthenticated}
+                  updated={updated}
+                  setprofileArtistName={setprofileArtistName}
+                />
+                <SearchArtist
+                  updated={updated}
+                  passChildData={setUpdated}
+                  profileArtistName={profileArtistName}
+                />
+              </>
+            )}
           />
           {/* Login Route */}
           <Route
@@ -119,27 +120,24 @@ const App = () => {
           />
           {/* art route */}
           <Route
-          exact
-          path="/art"
-          render={(props)=>
-            !isAuthenticated ? (  //false? go to
-              <Artworks setAuth={setisAuthenticated} />
-              ) : (
-              <Artworks setAuth={setisAuthenticated} />
-            )
-          }
+            exact
+            path="/art"
+            render={(props) => <Artworks />}
           />
           {/* artists route */}
+          <Route exact path="/artists" render={(props) => <Artists />} />
+          {/* profile route */}
           <Route
-          exact
-          path="/artists"
-          render={(props)=>
-            !isAuthenticated ? (  //false? go to
-              <Artists setAuth={setisAuthenticated} />
+            exact
+            path="/profile"
+            render={(props) =>
+              !isAuthenticated ? ( //false? go to
+                // <Redirect to="/" />
+                <h4>404 page unavailable</h4>
               ) : (
-              <Artists setAuth={setisAuthenticated} />
-            )
-          }
+                <Profile />
+              )
+            }
           />
         </Switch>
       </Router>

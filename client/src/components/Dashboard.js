@@ -4,7 +4,7 @@ import axios from "axios";
 import { Container } from "react-bootstrap";
 
 // profile function
-const Profile = ({ updated, setprofileArtistName }) => {
+const Dashboard = ({ updated, setprofileArtistName, isAuthenticated }) => {
   //get artists
   const GetArtists = () => {
     let [artists, setArtists] = useState([]);
@@ -78,18 +78,23 @@ const Profile = ({ updated, setprofileArtistName }) => {
           setArtists(res.data.rows);
         });
     };
-    return (
-      <div style={{ minHeight: "200px" }}>
-        My favorite artists:
-        {mapArtists()}
-      </div>
-    );
-  };
 
+    if (isAuthenticated) {
+      return (
+        <div style={{ minHeight: "200px" }}>
+          My favorite artists:
+          {mapArtists()}
+        </div>
+      );
+    } else {
+      return <div className='text-center'>
+        Login to save artists 
+      </div>;
+    }
+  };
 
   return (
     <Container>
-      {/* Welcome, {name}! */}
       <br />
       <br />
       <GetArtists />
@@ -98,4 +103,4 @@ const Profile = ({ updated, setprofileArtistName }) => {
   );
 };
 
-export default Profile;
+export default Dashboard;

@@ -1,9 +1,12 @@
 import React from 'react'
+import {Container} from 'react-bootstrap'
 
-export const Profile = () => {
+const Profile = () => {
     return (
-        <div>
+        <Container className='text-center my-5'>
             user profile
-        </div>
+        </Container>
     )
 }
+
+export default Profile

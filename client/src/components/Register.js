@@ -77,7 +77,7 @@ const Register = ({ setAuth }) => {
         ></input>
         <button className="btn btn-success w-100">Sign up</button>
       </form>
-      <div className="text-center">
+      <div className="text-center mb-5">
         <Link to="/login">Login</Link>
       </div>
     </Container>

@@ -18,7 +18,7 @@ const MyNavBar = ({ setAuth, isAuth }) => {
 
   const GuestDropDown = () => {
     return (
-      <NavDropdown title="">
+      <NavDropdown title="Login/Register">
         <NavDropdown.Item href={"/login"}>Login</NavDropdown.Item>
         <NavDropdown.Item href={"/register"}>Get Started</NavDropdown.Item>
       </NavDropdown>

@@ -1,24 +1,31 @@
 // import modules
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { backendURL, client_id, client_secret, apiUrl } from "../sharedVariables";
+import {
+  backendURL,
+  client_id,
+  client_secret,
+  apiUrl,
+  artists,
+} from "../sharedVariables";
 
 // search artist function
 const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
   let [input, setInput] = useState("");
-  let [input2, setInput2] = useState("")
+  let [input2, setInput2] = useState("");
+
   //check if profile artist name changed
   useEffect(() => {
     setInput(profileArtistName);
-    setInput2(profileArtistName)
+    setInput2(profileArtistName);
     // searchFor(input)
   }, [profileArtistName]);
   // auto search for artist
-  useEffect(()=>{
-    if(input!==''){
-      searchFor(input)
+  useEffect(() => {
+    if (input !== "") {
+      searchFor(input);
     }
-  },[input2])
+  }, [input2]);
   // [input2]
   const AddArtist = ({ name }) => {
     let [myName, setmyName] = useState("");
@@ -26,7 +33,7 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
     //useffect
     useEffect(() => {
       setmyName(name);
-    },[]);
+    }, []);
 
     const addToFavs = () => {
       //set headers
@@ -75,7 +82,7 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
             target="_blank"
             rel="noreferrer"
           >
-            <img alt='thumbnail' src={result["_links"].thumbnail.href}></img>
+            <img alt="thumbnail" src={result["_links"].thumbnail.href}></img>
           </a>
           <div id="biography">{bio === "" ? "no bio available" : bio}</div>
         </div>
@@ -98,6 +105,11 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
     biography: "",
   });
   let [bio, setBio] = useState("");
+  let [randomArtist, setrandomArtist] = useState('')
+
+  useEffect(()=>{
+    getRandomArtist()
+  },[])
 
   const searchFor = async (z) => {
     // debugger;
@@ -121,11 +133,11 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
     console.log("biography", res3.data.biography);
     setBio(res3.data.biography);
     console.log("bio", bio);
-  }
+  };
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      searchFor(input)
+      searchFor(input);
     }
   };
   const search = async (input) => {
@@ -154,18 +166,48 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
       return "no-artist-found";
     }
   };
-
-  return (
-    <div className="container text-center border mt-5">
-      <h2>Search for artists</h2>
-      <input
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={handleKeyDown}
-      />
-      <ArtistDetail />
-    </div>
-  );
+  const getRandomArtist = () => {
+    setrandomArtist(artists[Math.floor(Math.random()*artists.length)])
+  }
+  if (!searched) {
+    return (
+      <div className="container text-center border mt-5">
+        <h2>Search for artists</h2>
+        <h4 onClick={()=>{
+          searchFor(randomArtist)
+          getRandomArtist()
+        }
+          }>e.g. &nbsp;
+          {randomArtist}</h4>
+        <br/>
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+      </div>
+    );
+  } else {
+    return (
+      <div className="container text-center border my-2">
+        <h2>Search for artists</h2>
+        <h4 onClick={()=>{
+          searchFor(randomArtist)
+          getRandomArtist()
+        }
+          }>e.g. &nbsp;
+          {randomArtist}</h4>
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+        <ArtistDetail />
+        {/* margin bottom */}
+        <div className='mb-5'></div> 
+      </div>
+    );
+  }
 };
 
 export default SearchArtist;

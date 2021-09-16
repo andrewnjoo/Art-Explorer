@@ -22,13 +22,18 @@ const artists = [
   "David Hockney",
   "El Greco",
   "Elmgreen & Dragset",
-  "Michael Heizer",
+  // "Michael Heizer", bugs
   "Jean-Michel Basquiat",
   "Cai Guo-Qiang 蔡国强",
   "Auguste Rodin",
   "Michelangelo Buonarroti",
   "Andy Warhol",
-  "Yves Klein"
+  "Yves Klein",
+  "Joseph Beuys",
+  "Mark Rothko",
+  "Jackson Pollock",
+  "Georgia O’Keeffe",
+  "Wassily Kandinsky"
 ];
 
 export {
