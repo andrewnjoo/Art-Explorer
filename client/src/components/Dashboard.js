@@ -86,32 +86,10 @@ const Profile = ({ updated, setprofileArtistName }) => {
     );
   };
 
-  const [name, setName] = useState("");
-
-  async function getName() {
-    try {
-      const response = await fetch(`${backendURL}dashboard/`, {
-        method: "GET",
-        headers: { token: localStorage.token },
-      });
-      const parseRes = await response.json();
-      // console.log(parseRes);
-
-      //set name
-      setName(parseRes.user_name);
-    } catch (err) {
-      console.error(err.message);
-    }
-  }
-
-  //get name of user
-  useEffect(() => {
-    getName();
-  },[]);
 
   return (
     <Container>
-      Welcome, {name}!
+      {/* Welcome, {name}! */}
       <br />
       <br />
       <GetArtists />

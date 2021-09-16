@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import {
   //browserrouter or hashrouter
-  HashRouter as Router,
+  BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
@@ -17,8 +17,10 @@ import SearchArtist from "./components/SearchArtist";
 import MyNavBar from "./components/MyNavBar";
 import Register from "./components/Register";
 import Login from "./components/Login";
-import Profile from "./components/Profile";
+import Dashboard from "./components/Dashboard";
 import SampleArtist from "./components/SampleArtist";
+import Artworks from "./components/Artworks";
+import Artists from './components/Artists'
 
 // configure toastify
 toast.configure({
@@ -88,7 +90,7 @@ const App = () => {
                 </>
               ) : (
                 <>
-                  <Profile updated={updated} setprofileArtistName={setprofileArtistName}/>
+                  <Dashboard updated={updated} setprofileArtistName={setprofileArtistName}/>
                   <SearchArtist updated={updated} passChildData={setUpdated} profileArtistName={profileArtistName} />
                 </>
               )
@@ -117,6 +119,30 @@ const App = () => {
                 <Redirect to="/" />
               )
             }
+          />
+          {/* art route */}
+          <Route
+          exact
+          path="/art"
+          render={(props)=>
+            !isAuthenticated ? (  //false? go to
+              <Login {...props} setAuth={setAuth} />
+              ) : (
+              <Artworks setAuth={setAuth} />
+            )
+          }
+          />
+          {/* artists route */}
+          <Route
+          exact
+          path="/artists"
+          render={(props)=>
+            !isAuthenticated ? (  //false? go to
+              <Login {...props} setAuth={setAuth} />
+              ) : (
+              <Artists setAuth={setAuth} />
+            )
+          }
           />
         </Switch>
       </Router>

@@ -1,9 +1,13 @@
 //import modules
-import { Navbar, Container, NavDropdown } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { Navbar, Container, NavDropdown, Nav } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { backendURL } from "../sharedVariables";
+import { User_GetName } from "./User_GetName";
 
 // navbar function
 const MyNavBar = ({ setAuth, isAuth }) => {
+  let [name, setName] = useState("");
   // logout function
   const logout = (e) => {
     e.preventDefault();
@@ -15,7 +19,6 @@ const MyNavBar = ({ setAuth, isAuth }) => {
   const GuestDropDown = () => {
     return (
       <NavDropdown title="">
-
         <NavDropdown.Item href={"/login"}>Login</NavDropdown.Item>
         <NavDropdown.Item href={"/register"}>Get Started</NavDropdown.Item>
       </NavDropdown>
@@ -24,7 +27,9 @@ const MyNavBar = ({ setAuth, isAuth }) => {
 
   const UserDropDown = () => {
     return (
-      <NavDropdown title="">
+      <NavDropdown title={`Hi! ${name}`}>
+        <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+        <NavDropdown.Divider />
         <NavDropdown.Item
           onClick={(e) => {
             logout(e);
@@ -43,21 +48,28 @@ const MyNavBar = ({ setAuth, isAuth }) => {
   return (
     <div>
       {/* bootstrap navbar */}
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark" expand="lg">
         <Container data-testid="container">
-          <Navbar.Brand href="/">
-            <img
-              alt=""
-              src="https://raw.githubusercontent.com/adnjoo/capstone/main/assets/mona2.png"
-              width="25"
-              height="30"
-              className="d-inline-block align-top"
-            />{" "}
-            artExplorer
-          </Navbar.Brand>
+          <Nav className="me-auto">
+            <Navbar.Brand href="/">
+              <img
+                alt=""
+                src="https://raw.githubusercontent.com/adnjoo/capstone/main/assets/mona2.png"
+                width="25"
+                height="30"
+                className="d-inline-block align-top"
+              />{" "}
+              artExplorer
+            </Navbar.Brand>
+
+            <Nav.Link href="/art">Artworks</Nav.Link>
+            <Nav.Link href="/artists">Learn about artists</Nav.Link>
+          </Nav>
+
           <LoggedDropDown isAuth={isAuth} />
         </Container>
       </Navbar>
+      <User_GetName setName={setName} />
     </div>
   );
 };
