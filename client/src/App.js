@@ -21,6 +21,7 @@ import Dashboard from "./components/Dashboard";
 import Artworks from "./components/Artworks";
 import Artists from "./components/Artists";
 import Profile from "./components/Profile";
+import Footer from './components/Footer'
 
 // configure toastify
 toast.configure({
@@ -141,6 +142,7 @@ const App = () => {
           />
         </Switch>
       </Router>
+      <Footer />
     </div>
   );
 };
