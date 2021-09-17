@@ -10,15 +10,19 @@ const dothis = async () => {
   });
   xappToken = res.data.token;
   axios
-    .get(`https://api.artsy.net/api/genes?artist_id=4d8b926a4eb68a1b2c0000ae`, {
+    // .get(`https://api.artsy.net/api/genes?artist_id=4d8b926a4eb68a1b2c0000ae`, {
+    .get(`https://api.artsy.net/api/artworks?artist_id=4d8b926a4eb68a1b2c0000ae`, {
       headers: {
         "X-XAPP-Token": xappToken,
       },
     })
     .then((res) => {
-      for (i in res.data._embedded.genes) {
-        console.log(res.data._embedded.genes[i]);
-      }
+
+      console.log(xappToken)
+      console.log(res.data)
+      // for (i in res.data._embedded.genes) {
+      //   console.log(res.data._embedded.genes[i]);
+      // }
     });
 };
 

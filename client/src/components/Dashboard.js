@@ -12,9 +12,7 @@ const Dashboard = ({ updated, setprofileArtistName, isAuthenticated }) => {
     //if new artist added, get new favorites from db
     useEffect(() => {
       getFav();
-    }, []);
-
-    // }, []); try this if it doesn't work
+    }, []); 
 
     //send from profile to app to searchartist
     const changeName = (x) => {
@@ -43,7 +41,7 @@ const Dashboard = ({ updated, setprofileArtistName, isAuthenticated }) => {
 
     //map function
     const mapArtists = () => {
-      return artists.map((x) => {
+      return artists.map(x => {
         return (
           <div key={x.name}>
             <button
@@ -75,6 +73,7 @@ const Dashboard = ({ updated, setprofileArtistName, isAuthenticated }) => {
           headers: headers,
         })
         .then((res) => {
+          console.log(`res rows`, res.data.rows)
           setArtists(res.data.rows);
         });
     };

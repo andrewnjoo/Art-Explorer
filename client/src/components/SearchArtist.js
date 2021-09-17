@@ -155,7 +155,7 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
       {
         headers: {
           "X-XAPP-Token": xappToken,
-        },
+        }
       }
     );
     console.log(res2.data._embedded);

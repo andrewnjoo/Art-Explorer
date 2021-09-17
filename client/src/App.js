@@ -126,7 +126,7 @@ const App = () => {
             render={(props) => <Artworks />}
           />
           {/* artists route */}
-          <Route exact path="/artists" render={(props) => <Artists />} />
+          <Route exact path="/artists" render={(props) => <Artists isAuthenticated={isAuthenticated}/>} />
           {/* profile route */}
           <Route
             exact
