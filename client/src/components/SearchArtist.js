@@ -1,6 +1,7 @@
 // import modules
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
 import {
   backendURL,
   client_id,
@@ -155,7 +156,7 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
       {
         headers: {
           "X-XAPP-Token": xappToken,
-        }
+        },
       }
     );
     console.log(res2.data._embedded);
@@ -210,7 +211,9 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
         />
-        <ArtistDetail />
+        <Suspense fallback={<Spinner />}>
+          <ArtistDetail />
+        </Suspense>
         <div className="mb-5"></div>
       </div>
     );

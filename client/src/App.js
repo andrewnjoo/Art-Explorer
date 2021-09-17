@@ -21,7 +21,7 @@ import Dashboard from "./components/Dashboard";
 import Artworks from "./components/Artworks";
 import Artists from "./components/Artists";
 import Profile from "./components/Profile";
-import Footer from './components/Footer'
+import Footer from "./components/Footer";
 
 // configure toastify
 toast.configure({
@@ -120,13 +120,9 @@ const App = () => {
             }
           />
           {/* art route */}
-          <Route
-            exact
-            path="/art"
-            render={(props) => <Artworks />}
-          />
+          <Route exact path="/art" render={(props) => <Artworks />} />
           {/* artists route */}
-          <Route exact path="/artists" render={(props) => <Artists isAuthenticated={isAuthenticated}/>} />
+          <Route exact path="/artists" render={(props) => <Artists />} />
           {/* profile route */}
           <Route
             exact

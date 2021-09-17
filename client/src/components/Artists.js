@@ -4,7 +4,7 @@ import axios from "axios";
 import { apiUrl, client_id, client_secret } from "../sharedVariables";
 
 console.log();
-const Artists = ({ isAuthenticated }) => {
+const Artists = () => {
   let [loading, setLoading] = useState(false);
   let [genes, setGenes] = useState([]);
   let [initial] = useState([]);
