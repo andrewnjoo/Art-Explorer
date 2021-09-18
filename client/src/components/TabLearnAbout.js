@@ -3,7 +3,7 @@ import { Card, Container } from "react-bootstrap";
 import axios from "axios";
 import { apiUrl, client_id, client_secret } from "../sharedVariables";
 
-const Artists = () => {
+const TabeLearnAbout = () => {
   let [loading, setLoading] = useState(false);
   let [genes, setGenes] = useState([]);
   let [initial] = useState([]);
@@ -75,4 +75,4 @@ const Artists = () => {
   );
 };
 
-export default Artists;
+export default TabeLearnAbout;

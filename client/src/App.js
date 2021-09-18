@@ -18,8 +18,8 @@ import MyNavBar from "./components/MyNavBar";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
-import Artworks from "./components/Artworks";
-import Artists from "./components/Artists";
+import TabArtworks from "./components/TabArtworks";
+import TabLearnAbout from "./components/TabLearnAbout";
 import Profile from "./components/Profile";
 import Footer from "./components/Footer";
 
@@ -120,9 +120,9 @@ const App = () => {
             }
           />
           {/* art route */}
-          <Route exact path="/art" render={(props) => <Artworks />} />
+          <Route exact path="/art" render={(props) => <TabArtworks />} />
           {/* artists route */}
-          <Route exact path="/artists" render={(props) => <Artists />} />
+          <Route exact path="/artists" render={(props) => <TabLearnAbout />} />
           {/* profile route */}
           <Route
             exact

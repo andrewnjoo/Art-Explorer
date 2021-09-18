@@ -3,7 +3,7 @@ import { backendURL } from "../sharedVariables";
 import axios from "axios";
 import { Container, Card } from "react-bootstrap";
 
-// profile function
+// dashboard function
 const Dashboard = ({ updated, setprofileArtistName, isAuthenticated }) => {
   //get artists
   const GetArtists = () => {

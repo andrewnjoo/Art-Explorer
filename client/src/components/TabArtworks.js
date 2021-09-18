@@ -3,7 +3,7 @@ import returnXappToken from "./artsy/artsy-auth";
 import { Container } from "react-bootstrap";
 import {ThreeFiber} from "./ThreeFiber";
 
-const Artworks = ({ setAuth }) => {
+const TabArtworks = ({ setAuth }) => {
   const getArt = () => {
     let xappToken = returnXappToken();
     console.log(xappToken)
@@ -21,4 +21,4 @@ const Artworks = ({ setAuth }) => {
   );
 };
 
-export default Artworks;
+export default TabArtworks;
