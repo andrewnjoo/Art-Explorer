@@ -66,7 +66,9 @@ const TabeLearnAbout = () => {
   return (
     <div>
       <Container className="text-center my-5">
-        art-genes
+        <p>
+        Learn about art-movements:
+        </p>
         <br />
         <div id="subcontainer">{renderIf()}</div>
 

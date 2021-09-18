@@ -9,9 +9,11 @@ import {
   apiUrl,
   artists,
 } from "../sharedVariables";
+import Heart from 'react-animated-heart'
 
 // search artist function
-const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
+const SearchArtist = ({ updated, passChildData, profileArtistName, isAuthenticated }) => {
+  const [isClick, setClick] = useState(false);
   let [input, setInput] = useState("");
   let [input2, setInput2] = useState("");
 
@@ -27,7 +29,7 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
       searchFor(input);
     }
   });
-  const AddArtist = ({ name }) => {
+  const AddArtist = ({ name, isAuthenticated }) => {
     let [myName, setmyName] = useState("");
 
     //useffect
@@ -61,21 +63,27 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
           }
         });
     };
+    // if not auth dont return heart
+    if(!isAuthenticated){
+      return (<div></div>)
+    }
+    // if already in array isclick should be on
     return (
       <>
-        <button onClick={addToFavs}>add to favs</button>
+      <Heart isClick={isClick} onClick={()=>setClick(!isClick)} />
+        {/* <button onClick={addToFavs}>add to favs</button> */}
       </>
     );
   };
   // artist detail function
-  const ArtistDetail = () => {
+  const ArtistDetail = ({isAuthenticated}) => {
     if (!searched) {
       return <div></div>;
     } else {
       return (
         <div>
           <h4>{result.title}</h4>
-          <AddArtist name={result.title} />
+          <AddArtist name={result.title} isAuthenticated={isAuthenticated} />
           <br />
           <a
             href={result["_links"].permalink.href}
@@ -212,7 +220,7 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
           onKeyDown={handleKeyDown}
         />
         <Suspense fallback={<Spinner />}>
-          <ArtistDetail />
+          <ArtistDetail isAuthenticated={isAuthenticated}/>
         </Suspense>
         <div className="mb-5"></div>
       </div>

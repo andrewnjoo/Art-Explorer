@@ -23,7 +23,7 @@ const SampleArtist = () => {
   useEffect(() => {
     let x = Math.floor(Math.random() * artists.length);
     search(artists[x]);
-  });
+  },[]); // need empty array to prevent infinite searches
 
   //search for artist
   const search = async (input) => {

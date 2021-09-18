@@ -91,6 +91,7 @@ const App = () => {
                   updated={updated}
                   passChildData={setUpdated}
                   profileArtistName={profileArtistName}
+                  isAuthenticated={isAuthenticated}
                 />
               </>
             )}
