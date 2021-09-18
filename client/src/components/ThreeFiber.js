@@ -46,7 +46,7 @@ export const ThreeFiber = ({propheight}) => {
       <mesh
         {...props}
         ref={ref}
-        scale={active ? 6 : 4.5}
+        scale={active ? 5 : 4}
         onClick={
           // (event) => setActive(!active) make bigger
           myfunction

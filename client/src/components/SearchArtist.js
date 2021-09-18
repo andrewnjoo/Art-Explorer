@@ -26,8 +26,7 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
     if (input !== "") {
       searchFor(input);
     }
-  }, [input2]);
-  // [input2]
+  });
   const AddArtist = ({ name }) => {
     let [myName, setmyName] = useState("");
 

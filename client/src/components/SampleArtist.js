@@ -23,8 +23,7 @@ const SampleArtist = () => {
   useEffect(() => {
     let x = Math.floor(Math.random() * artists.length);
     search(artists[x]);
-  },[]);
-
+  });
 
   //search for artist
   const search = async (input) => {
