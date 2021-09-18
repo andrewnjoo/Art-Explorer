@@ -19,20 +19,18 @@ const SearchArtist = ({
   isAuthenticated,
 }) => {
   let [input, setInput] = useState("");
-  let [input2, setInput2] = useState("");
 
-  //check if profile artist name changed
+  //check if profile artist name from App.js changed
   useEffect(() => {
     setInput(profileArtistName);
-    setInput2(profileArtistName);
-    // searchFor(input)
-  }, [profileArtistName]);
-  // auto search for artist
+  }, [profileArtistName]); // if profileartistname changed in dashboard, we change input to PAN
+
+  // auto search for artist, if input changes we search for input, no need to type enter
   useEffect(() => {
     if (input !== "") {
       searchFor(input);
     }
-  });
+  },[input]); // add dependency array to prevent auto searching when typing
 
   const AddArtistButton = ({ name, isAuthenticated }) => {
     // const [isClick, setClick] = useState(false);
@@ -79,7 +77,7 @@ const SearchArtist = ({
     return (
       <div className='my-3'>
         {/* <Heart isClick={isClick} onClick={()=>setClick(!isClick)} /> */}
-        <button onClick={addToFavs}>add to favs</button>
+        <button className='btn btn-primary'onClick={addToFavs}>add to favs</button>
       </div>
     );
   };
