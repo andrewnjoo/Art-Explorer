@@ -1,7 +1,7 @@
 // import modules
 import axios from "axios";
 import React, { Suspense, useEffect, useState } from "react";
-import { Spinner } from "react-bootstrap";
+import { Card, Spinner } from "react-bootstrap";
 import {
   backendURL,
   client_id,
@@ -9,11 +9,15 @@ import {
   apiUrl,
   artists,
 } from "../sharedVariables";
-import Heart from 'react-animated-heart'
+import Heart from "react-animated-heart";
 
 // search artist function
-const SearchArtist = ({ updated, passChildData, profileArtistName, isAuthenticated }) => {
-  const [isClick, setClick] = useState(false);
+const SearchArtist = ({
+  updated,
+  passChildData,
+  profileArtistName,
+  isAuthenticated,
+}) => {
   let [input, setInput] = useState("");
   let [input2, setInput2] = useState("");
 
@@ -29,12 +33,16 @@ const SearchArtist = ({ updated, passChildData, profileArtistName, isAuthenticat
       searchFor(input);
     }
   });
-  const AddArtist = ({ name, isAuthenticated }) => {
+
+  const AddArtistButton = ({ name, isAuthenticated }) => {
+    // const [isClick, setClick] = useState(false);
     let [myName, setmyName] = useState("");
 
     //useffect
     useEffect(() => {
       setmyName(name);
+      // setClick(true)
+      console.log("name is", name);
     }, []);
 
     const addToFavs = () => {
@@ -64,36 +72,39 @@ const SearchArtist = ({ updated, passChildData, profileArtistName, isAuthenticat
         });
     };
     // if not auth dont return heart
-    if(!isAuthenticated){
-      return (<div></div>)
+    if (!isAuthenticated) {
+      return <div></div>;
     }
     // if already in array isclick should be on
     return (
-      <>
-      <Heart isClick={isClick} onClick={()=>setClick(!isClick)} />
-        {/* <button onClick={addToFavs}>add to favs</button> */}
-      </>
+      <div className='my-3'>
+        {/* <Heart isClick={isClick} onClick={()=>setClick(!isClick)} /> */}
+        <button onClick={addToFavs}>add to favs</button>
+      </div>
     );
   };
   // artist detail function
-  const ArtistDetail = ({isAuthenticated}) => {
+  const ArtistDetail = ({ isAuthenticated }) => {
     if (!searched) {
       return <div></div>;
     } else {
       return (
-        <div>
-          <h4>{result.title}</h4>
-          <AddArtist name={result.title} isAuthenticated={isAuthenticated} />
-          <br />
-          <a
-            href={result["_links"].permalink.href}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img alt="thumbnail" src={result["_links"].thumbnail.href}></img>
-          </a>
-          <div id="biography">{bio === "" ? "no bio available" : bio}</div>
-        </div>
+        <Card>
+          <Card.Body>
+            <Card.Title>{result.title}</Card.Title>
+            <AddArtistButton name={result.title} isAuthenticated={isAuthenticated} />
+            <a
+              href={result["_links"].permalink.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img alt="thumbnail" src={result["_links"].thumbnail.href}></img>
+            </a>
+            <Card.Text id="biography">
+              {bio === "" ? "no bio available" : bio}
+            </Card.Text>
+          </Card.Body>
+        </Card>
       );
     }
   };
@@ -119,10 +130,9 @@ const SearchArtist = ({ updated, passChildData, profileArtistName, isAuthenticat
     getRandomArtist();
   }, []);
 
-  const searchFor = async (z) => {
-    // debugger;
-    let data = await search(z);
-    console.log("data is", data);
+  const searchFor = async (input) => {
+    let data = await search(input);
+    // console.log("data is", data);
     if (data === "no-artist-found") {
       let resultCopy = result;
       resultCopy.title = "artist not found";
@@ -138,9 +148,9 @@ const SearchArtist = ({ updated, passChildData, profileArtistName, isAuthenticat
       },
     });
     //console.log(res3)
-    console.log("biography", res3.data.biography);
+    // console.log("biography", res3.data.biography);
     setBio(res3.data.biography);
-    console.log("bio", bio);
+    // console.log("bio", bio);
   };
 
   const handleKeyDown = (event) => {
@@ -194,7 +204,7 @@ const SearchArtist = ({ updated, passChildData, profileArtistName, isAuthenticat
         </h4>
         <br />
         <input
-          style={{minWidth:'220'}}
+          style={{ minWidth: "220" }}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
@@ -219,9 +229,9 @@ const SearchArtist = ({ updated, passChildData, profileArtistName, isAuthenticat
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
         />
-        <Suspense fallback={<Spinner />}>
-          <ArtistDetail isAuthenticated={isAuthenticated}/>
-        </Suspense>
+
+        <ArtistDetail isAuthenticated={isAuthenticated} />
+
         <div className="mb-5"></div>
       </div>
     );
