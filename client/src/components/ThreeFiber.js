@@ -7,7 +7,7 @@ const photo = artImages[Math.floor(Math.random() * artImages.length)];
 console.log("photo", photo);
 const textures = [];
 const texture = new THREE.TextureLoader().load(
-  "https://raw.githubusercontent.com/adnjoo/artExplorer/main/assets/mona2.png"
+  "https://raw.githubusercontent.com/adnjoo/artExplorer/main/assets/mona1.png"
 );
 const texture1 = new THREE.TextureLoader().load(
   "https://raw.githubusercontent.com/adnjoo/artExplorer/main/assets/kandinsky.png"
