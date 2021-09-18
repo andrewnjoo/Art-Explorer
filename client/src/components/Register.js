@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom'
 import { toast } from "react-toastify";
 import { Container } from "react-bootstrap";
 import { backendURL } from "../sharedVariables";
-import {ThreeFiber} from "./ThreeFiber";
 
 //main function
 const Register = ({ setAuth }) => {

@@ -2,8 +2,7 @@
 import { useState, useEffect } from "react";
 import { Navbar, Container, NavDropdown, Nav } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { backendURL } from "../sharedVariables";
-import { User_GetName } from "./User_GetName";
+import { UserGetName } from "./UserGetName";
 
 // navbar function
 const MyNavBar = ({ setAuth, isAuth }) => {
@@ -74,7 +73,7 @@ const MyNavBar = ({ setAuth, isAuth }) => {
           <LoggedDropDown isAuth={isAuth} />
         </Container>
       </Navbar>
-      <User_GetName trigger={trigger} setName={setName} />
+      <UserGetName trigger={trigger} setName={setName} />
     </div>
   );
 };

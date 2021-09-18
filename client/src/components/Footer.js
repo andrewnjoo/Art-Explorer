@@ -6,7 +6,7 @@ import React from 'react'
             marginTop:'100px',
             marginBottom:'20px'
         }}>
-            app made by <a href='https://github.com/adnjoo/artexplorer' target='_blank'>
+            app made by <a href='https://github.com/adnjoo/artexplorer' target='_blank' rel="noreferrer">
                 adnjoo
                 </a>
         </div>

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { backendURL } from "../sharedVariables";
 
-export const User_GetName = ({setName, trigger}) => {
+export const UserGetName = ({setName, trigger}) => {
 
   //get name of user
   useEffect(() => {

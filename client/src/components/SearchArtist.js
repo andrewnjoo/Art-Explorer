@@ -187,6 +187,7 @@ const SearchArtist = ({ updated, passChildData, profileArtistName }) => {
         </h4>
         <br />
         <input
+          style={{minWidth:'220'}}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}

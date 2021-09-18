@@ -1,5 +1,4 @@
 import * as THREE from "three";
-import ReactDOM from "react-dom";
 import React, { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { artImages } from "../sharedVariables";
@@ -31,12 +30,11 @@ export const ThreeFiber = ({propheight}) => {
     const [count, setCount] = useState(1);
     const [boxtex, setboxtex] = useState(texture);
     const ref = useRef();
-    const [hovered, setHover] = useState(false);
-    const [active, setActive] = useState(false);
+    const [active] = useState(false);
 
     useFrame((state, delta) => (ref.current.rotation.y += 0.005));
     const myfunction = () => {
-      if (count == textures.length) {
+      if (count === textures.length) {
         setCount(0);
         setboxtex(textures[count]);
         return;
@@ -53,8 +51,6 @@ export const ThreeFiber = ({propheight}) => {
           // (event) => setActive(!active) make bigger
           myfunction
         }
-        onPointerOver={(event) => setHover(true)}
-        onPointerOut={(event) => setHover(false)}
       >
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial map={boxtex} attach="material" />

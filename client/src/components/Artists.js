@@ -3,15 +3,10 @@ import { Card, Container } from "react-bootstrap";
 import axios from "axios";
 import { apiUrl, client_id, client_secret } from "../sharedVariables";
 
-console.log();
 const Artists = () => {
   let [loading, setLoading] = useState(false);
   let [genes, setGenes] = useState([]);
   let [initial] = useState([]);
-
-  useEffect(() => {
-    getGenes("4d8b92854eb68a1b2c0001b6"); //hockney
-  }, []);
 
   //get artsy genes
   const getGenes = async (input) => {
@@ -27,7 +22,7 @@ const Artists = () => {
           obj.name = res1.data._embedded.genes[i]["display_name"];
           obj.description = res1.data._embedded.genes[i].description
             .replace(/ *\([^)]*\) */g, " ") //replace parens and square brackets
-            .replace(/[\[\]']+/g, "");
+            .replace(/[[\]']+/g, "");
           obj.src = res1.data._embedded.genes[i]["_links"].thumbnail.href;
           genesCopy.push(obj);
         }
@@ -35,6 +30,13 @@ const Artists = () => {
         if (!loading) setLoading(true);
       });
   };
+
+  useEffect(() => {
+    getGenes("4d8b92854eb68a1b2c0001b6"); //hockney
+    // learn about van gogh 4d8b92944eb68a1b2c000264
+    // learn about basquiat 4db455226c0cee664800053c
+    // learn about da vinci 4d8b92684eb68a1b2c00009e
+  });
 
   // conditional render
   const renderIf = () => {
@@ -56,7 +58,7 @@ const Artists = () => {
               </Card.Body>
             </Card>
           );
-        }
+        } else return (<></>)
       })
     );
   };
@@ -67,17 +69,7 @@ const Artists = () => {
         art-genes
         <br />
         <div id="subcontainer">{renderIf()}</div>
-        {/* <button onClick={() => getGenes("4d8b92944eb68a1b2c000264")}>
-          learn about van gogh
-        </button>
-        <br />
-        <button onClick={() => getGenes("4d8b92684eb68a1b2c00009e")}>
-          learn about da vinci
-        </button>
-        <br />
-        <button onClick={() => getGenes("4db455226c0cee664800053c")}>
-          learn about basq
-        </button> */}
+
       </Container>
     </div>
   );
