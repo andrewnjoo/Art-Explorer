@@ -46,14 +46,14 @@ const Artists = () => {
       genes.map((x) => {
         if (x.name !== null) {
           return (
-            <Card style={{ width: "80%", margin: "auto" }}>
+            <Card style={{ width: "70%", margin: "auto" }}>
+              <Card.Title>{x.name}</Card.Title>
+              <Card.Body>
               <Card.Img
                 style={{ width: "150px", margin: "auto" }}
                 variant="top"
                 src={x.src}
               ></Card.Img>
-              <Card.Body>
-                <Card.Title>{x.name}</Card.Title>
                 <Card.Text>{x.description}</Card.Text>
               </Card.Body>
             </Card>
