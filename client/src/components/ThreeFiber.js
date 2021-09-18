@@ -25,7 +25,8 @@ const t4 = new THREE.TextureLoader().load(
 textures.push(texture, texture1, texture2, t3, t4);
 // console.log(textures)
 
-export const ThreeFiber = () => {
+export const ThreeFiber = ({propheight}) => {
+  console.log(propheight)
   function Box(props) {
     const [count, setCount] = useState(1);
     const [boxtex, setboxtex] = useState(texture);
@@ -61,7 +62,7 @@ export const ThreeFiber = () => {
     );
   }
   return (
-    <Canvas>
+    <Canvas className='my-3' style={{height: propheight, outline: '1px solid', width:'80%',margin:'auto'}}>
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
       <Box position={[0, 0, 0]} />

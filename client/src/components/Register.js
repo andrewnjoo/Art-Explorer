@@ -47,7 +47,6 @@ const Register = ({ setAuth }) => {
 
   return (
     <Container className="w-50">
-      <ThreeFiber/>
       <h1 className="text-center my-5">Register</h1>
       {/* Register Form */}
       <form className="mb-3" onSubmit={onSubmitForm}>

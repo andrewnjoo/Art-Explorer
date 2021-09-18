@@ -17,7 +17,7 @@ const Artworks = ({ setAuth }) => {
   return (
     <div>
       <Container className='text-center my-5'>Artworks</Container>
-      <ThreeFiber />
+      <ThreeFiber propheight='400px'/>
     </div>
   );
 };
