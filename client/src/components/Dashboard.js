@@ -4,20 +4,23 @@ import axios from "axios";
 import { Container, Card } from "react-bootstrap";
 
 // dashboard function
-const Dashboard = ({ updated, setprofileArtistName, isAuthenticated }) => {
+const Dashboard = ({ setprofileArtistName, isAuthenticated, artists, setArtists, getFav }) => {
+
+  const [initial, setInitial] = useState(false)
   //get artists
-  const GetArtists = () => {
-    let [artists, setArtists] = useState([]);
-
-    //if new artist added, get new favorites from db
+  const GetArtists = () => {    
+    //get favorite artists
     useEffect(() => {
-      getFav();
-    }, []); 
+      if(!initial) {
+        getFav()
+        setInitial(true)
+      } else if (initial) {
+        return
+      }
+    }); 
 
-    //send from profile to app to searchartist
-    const changeName = (x) => {
-      setprofileArtistName(x);
-    };
+    //send from dahsboard to app to searchartist
+    const changeName = x => setprofileArtistName(x);
 
     //delete artist
     const delArtist = (x) => {
@@ -63,32 +66,20 @@ const Dashboard = ({ updated, setprofileArtistName, isAuthenticated }) => {
     };
 
     //get artists
-    const getFav = () => {
-      const headers = {
-        "Content-Type": "application/json",
-        token: localStorage.token,
-      };
-      axios
-        .get(`${backendURL}api/getartists`, {
-          headers: headers,
-        })
-        .then((res) => {
-          console.log(`res rows`, res.data.rows)
-          setArtists(res.data.rows);
-        });
-    };
+
 
     if (isAuthenticated) {
       return (
         <Card className='text-center'>
           <Card.Body>
-            <Card.Title>My favorite artists:</Card.Title>
+            <Card.Title>Dashboard</Card.Title>
+            <Card.Subtitle>My favorite artists:</Card.Subtitle>
             {mapArtists()}
           </Card.Body>
         </Card>
       );
     } else {
-      return <div className="text-center">Login to save artists</div>;
+      return (<div className="text-center">Login to save artists</div>);
     }
   };
 
@@ -97,7 +88,6 @@ const Dashboard = ({ updated, setprofileArtistName, isAuthenticated }) => {
       <br />
       <br />
       <GetArtists />
-      <div style={{ display: "none" }}>{updated}</div>
     </Container>
   );
 };

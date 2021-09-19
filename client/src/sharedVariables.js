@@ -7,7 +7,7 @@ const client_secret = "92122aaf680fe0def89ce3bcc6d9d1d5";
 let apiUrl = "https://api.artsy.net/api/tokens/xapp_token";
 
 // sample artists
-const artists = [
+const sampleArtists = [
   "Ai Weiwei",
   "Andy Warhol",
   "Auguste Rodin",
@@ -20,6 +20,8 @@ const artists = [
   "El Greco",
   "Elmgreen & Dragset",
   "Georgia O’Keeffe",
+  "Hito Steyerl",
+  "J. M. W. Turner",
   "Jackson Pollock",
   "Jean-Michel Basquiat",
   "Joseph Beuys",
@@ -30,6 +32,7 @@ const artists = [
   "Michael Heizer",
   "Michelangelo Buonarroti",
   "Norman Rockwell",
+  "Oscar Murillo",
   "Paul Gauguin",
   "Picasso",
   "Raphael",
@@ -42,11 +45,9 @@ const artists = [
   "Yves Klein",
 ];
 
-console.log(artists.sort());
-
 const artImages = [
   "https://d32dm0rphc51dk.cloudfront.net/X9vVvod7QY73ZwLDSZzljw/square.jpg",
   "https://raw.githubusercontent.com/adnjoo/artExplorer/main/assets/mona2.png",
 ];
 
-export { backendURL, client_id, client_secret, apiUrl, artists, artImages };
+export { backendURL, client_id, client_secret, apiUrl, sampleArtists, artImages };

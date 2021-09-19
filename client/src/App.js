@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import { backendURL } from "./sharedVariables";
+import axios from "axios";
 
 //import components
 import SearchArtist from "./components/SearchArtist";
@@ -33,10 +34,23 @@ toast.configure({
 
 //main app
 const App = () => {
-  //isAuthenticated
-  const [isAuthenticated, setisAuthenticated] = useState(false);
-  const [updated, setUpdated] = useState("");
+  const [artists, setArtists] = useState([]);
+  const [isAuthenticated, setisAuthenticated] = useState(false); //isAuthenticated
   const [profileArtistName, setprofileArtistName] = useState("");
+
+  const getFav = () => {
+    const headers = {
+      "Content-Type": "application/json",
+      token: localStorage.token,
+    };
+    axios
+      .get(`${backendURL}api/getartists`, {
+        headers,
+      })
+      .then((res) => {
+        setArtists(res.data.rows);
+      });
+  };
 
   //pass jwt token to middleware in backend to check if authorized
   const isAuth = async () => {
@@ -61,11 +75,6 @@ const App = () => {
     isAuth();
   }, []);
 
-  //check if data is updated
-  useEffect(() => {
-    console.log("updated is", updated);
-  }, [updated]);
-
   //check if profileartistname updated
   useEffect(() => {
     console.log("profileartistname is", profileArtistName);
@@ -84,14 +93,16 @@ const App = () => {
               <>
                 <Dashboard
                   isAuthenticated={isAuthenticated}
-                  updated={updated}
                   setprofileArtistName={setprofileArtistName}
+                  artists={artists}
+                  setArtists={setArtists}
+                  getFav={getFav}
                 />
                 <SearchArtist
-                  updated={updated}
-                  passChildData={setUpdated}
                   profileArtistName={profileArtistName}
                   isAuthenticated={isAuthenticated}
+                  artists={artists}
+                  getFav={getFav}
                 />
               </>
             )}

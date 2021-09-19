@@ -7,18 +7,22 @@ import {
   client_id,
   client_secret,
   apiUrl,
-  artists,
+  sampleArtists,
 } from "../sharedVariables";
-import Heart from "react-animated-heart";
 
 // search artist function
 const SearchArtist = ({
-  updated,
-  passChildData,
   profileArtistName,
   isAuthenticated,
+  artists,
+  getFav
 }) => {
   let [input, setInput] = useState("");
+
+  //get from dashboard-app-searchartist
+  useEffect(()=>{
+    console.log('searchartists-artists are', artists)
+  },[artists])
 
   //check if profile artist name from App.js changed
   useEffect(() => {
@@ -33,23 +37,20 @@ const SearchArtist = ({
   },[input]); // add dependency array to prevent auto searching when typing
 
   const AddArtistButton = ({ name, isAuthenticated }) => {
-    // const [isClick, setClick] = useState(false);
+    const [isClick, setClick] = useState(false);
     let [myName, setmyName] = useState("");
 
     //useffect
     useEffect(() => {
       setmyName(name);
-      // setClick(true)
       console.log("name is", name);
-    }, []);
+    }, [name]);
 
     const addToFavs = () => {
-      //set headers
-      const headers = {
+      const headers = {       //set headers
         "Content-Type": "application/json",
         token: localStorage.token,
       };
-      // console.log("test");
       axios
         .post(
           `${backendURL}api/addartist`,
@@ -60,27 +61,20 @@ const SearchArtist = ({
             headers: headers,
           }
         )
-        .then((res) => {
-          console.log("added artist", res);
-          if (updated === "") {
-            passChildData("yy");
-          } else {
-            passChildData("");
-          }
+        .then(res => {
+          getFav()
         });
     };
-    // if not auth dont return heart
     if (!isAuthenticated) {
       return <div></div>;
     }
-    // if already in array isclick should be on
     return (
       <div className='my-3'>
-        {/* <Heart isClick={isClick} onClick={()=>setClick(!isClick)} /> */}
-        <button className='btn btn-primary'onClick={addToFavs}>add to favs</button>
+        <button className='btn btn-primary'onClick={addToFavs}>Follow</button>
       </div>
     );
   };
+  
   // artist detail function
   const ArtistDetail = ({ isAuthenticated }) => {
     if (!searched) {
@@ -185,7 +179,7 @@ const SearchArtist = ({
     return "no-artist-found";
   };
   const getRandomArtist = () => {
-    setrandomArtist(artists[Math.floor(Math.random() * artists.length)]);
+    setrandomArtist(sampleArtists[Math.floor(Math.random() * sampleArtists.length)]);
   };
   if (!searched) {
     return (

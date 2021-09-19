@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Container } from "react-bootstrap";
-import { artists, client_id, client_secret, apiUrl } from "../sharedVariables";
+import { sampleArtists, client_id, client_secret, apiUrl } from "../sharedVariables";
 
 // sampleartist component
 const SampleArtist = () => {
@@ -21,8 +21,8 @@ const SampleArtist = () => {
 
   //choose random artist
   useEffect(() => {
-    let x = Math.floor(Math.random() * artists.length);
-    search(artists[x]);
+    let x = Math.floor(Math.random() * sampleArtists.length);
+    search(sampleArtists[x]);
   },[]); // need empty array to prevent infinite searches
 
   //search for artist

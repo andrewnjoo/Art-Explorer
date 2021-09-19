@@ -7,3 +7,5 @@
 * assign rating to favorite artist/ art-pieces
 * better styling/formatting
 * update react components after api fetch
+* can we do dropdown for results
+* likes for artists
