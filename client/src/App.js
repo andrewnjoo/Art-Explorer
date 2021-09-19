@@ -75,11 +75,6 @@ const App = () => {
     isAuth();
   }, []);
 
-  //check if profileartistname updated
-  useEffect(() => {
-    console.log("profileartistname is", profileArtistName);
-  }, [profileArtistName]);
-
   return (
     <div className="App">
       <MyNavBar isAuth={isAuthenticated} setAuth={setisAuthenticated} />

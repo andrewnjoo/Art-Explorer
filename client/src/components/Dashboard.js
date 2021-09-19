@@ -19,7 +19,7 @@ const Dashboard = ({ setprofileArtistName, isAuthenticated, artists, setArtists,
       }
     }); 
 
-    //send from dahsboard to app to searchartist
+    //send from dashboard to app to searchartist
     const changeName = x => setprofileArtistName(x);
 
     //delete artist
