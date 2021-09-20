@@ -37,6 +37,7 @@ const Login = ({ setAuth, setuserName }) => {
           localStorage.setItem("token", parseRes.token);
           setAuth(true);
           toast.success("Successfully logged in");
+          getUserName()
         } else {
           setAuth(false);
           toast.error(parseRes);
@@ -65,21 +66,20 @@ const Login = ({ setAuth, setuserName }) => {
         localStorage.setItem("token", parseRes.token);
         setAuth(true);
         toast.success("Successfully logged in");
-        getName()
+        getUserName()
       }
     };
 
-    async function getName() {
+    //get username
+    async function getUserName() {
       try {
         const response = await fetch(`${backendURL}dashboard/`, {
           method: "GET",
           headers: { token: localStorage.token },
         });
         const parseRes = await response.json();
-        console.log('getName,parseRes', parseRes);
-  
+        console.log('parseRes', parseRes);
         //set name
-        // setName(parseRes.user_name);
         setuserName(parseRes.user_name)
       } catch (err) {
         console.error(err.message);

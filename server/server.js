@@ -17,6 +17,9 @@ app.get("/api/getart", controller.getArt);
 // get artists
 app.get("/api/getartists", controller.getArtists);
 
+// get popular artists
+app.get("/api/getpopularartists", controller.getPopularArtists);
+
 // add artist
 app.post("/api/addartist", controller.addArtist);
 

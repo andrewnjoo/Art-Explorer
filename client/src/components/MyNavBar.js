@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 
 // navbar function
 const MyNavBar = ({ setAuth, isAuth, userName }) => {
+
   // logout function
   const logout = (e) => {
     e.preventDefault();
@@ -59,8 +60,9 @@ const MyNavBar = ({ setAuth, isAuth, userName }) => {
               artExplorer
             </Navbar.Brand>
 
-            <Nav.Link href="/art">Artworks</Nav.Link>
-            <Nav.Link href="/artists">Learn about artists</Nav.Link>
+            <Nav.Link href="/artworks">Artworks</Nav.Link>
+            <Nav.Link href="/artmovements">Art-movements</Nav.Link>
+            <Nav.Link href="/popularartists">Popular artists</Nav.Link>
           </Nav>
 
           <LoggedDropDown isAuth={isAuth} />

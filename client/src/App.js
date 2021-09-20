@@ -23,6 +23,7 @@ import TabArtworks from "./components/TabArtworks";
 import TabLearnAbout from "./components/TabLearnAbout";
 import Profile from "./components/Profile";
 import Footer from "./components/Footer";
+import { TabPopularArtists } from "./components/TabPopularArtists";
 
 // configure toastify
 toast.configure({
@@ -128,9 +129,11 @@ const App = () => {
             }
           />
           {/* art route */}
-          <Route exact path="/art" render={(props) => <TabArtworks />} />
-          {/* artists route */}
-          <Route exact path="/artists" render={(props) => <TabLearnAbout />} />
+          <Route exact path="/artworks" render={(props) => <TabArtworks />} />
+          {/* art movements */}
+          <Route exact path="/artmovements" render={(props) => <TabLearnAbout />} />
+          {/* popular artists route */}
+          <Route exact path="/popularartists" render={(props) => <TabPopularArtists />} />
           {/* profile route */}
           <Route
             exact

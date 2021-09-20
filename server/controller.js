@@ -45,6 +45,23 @@ const getArtists = (req, res) => {
   }
 };
 
+// get popular artists
+
+const getPopularArtists = (req, res) => {
+  try {
+    const payload = verify(req.header("token"));
+    req.user = payload.user
+    pool
+      .query("select name, count(*) from artists group by name order by count(*) desc;")
+      .then((results) => {
+        console.log(results.data)
+        res.status(200).send(results);
+      });
+  } catch (e) {
+    console.log("error", e);
+  }
+};
+
 //delete artist
 const delArtist = async(req,res) =>{
   try {
@@ -102,6 +119,7 @@ const addArtist = async (req, res) => {
 module.exports = {
   getArt,
   getArtists,
+  getPopularArtists,
   addArtist,
   delArtist,
   testRoute
