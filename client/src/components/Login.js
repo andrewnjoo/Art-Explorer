@@ -7,7 +7,7 @@ import { backendURL } from "../sharedVariables";
 import SampleArtist from "./SampleArtist";
 
 // login function
-const Login = ({ setAuth }) => {
+const Login = ({ setAuth, setuserName }) => {
     const [inputs, setInputs] = useState({
       email: "",
       password: "",
@@ -58,15 +58,33 @@ const Login = ({ setAuth }) => {
         body: JSON.stringify(body),
       });
       const parseRes = await response.json();
-      console.log(parseRes);
+      console.log('parseres is ', parseRes);
   
       if (parseRes.token) {
         // set token in localStorage
         localStorage.setItem("token", parseRes.token);
         setAuth(true);
         toast.success("Successfully logged in");
+        getName()
       }
     };
+
+    async function getName() {
+      try {
+        const response = await fetch(`${backendURL}dashboard/`, {
+          method: "GET",
+          headers: { token: localStorage.token },
+        });
+        const parseRes = await response.json();
+        console.log('getName,parseRes', parseRes);
+  
+        //set name
+        // setName(parseRes.user_name);
+        setuserName(parseRes.user_name)
+      } catch (err) {
+        console.error(err.message);
+      }
+    }
   
     return (
       <Container className="my-5 w-50" 

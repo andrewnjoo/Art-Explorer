@@ -37,6 +37,7 @@ const App = () => {
   const [artists, setArtists] = useState([]);
   const [isAuthenticated, setisAuthenticated] = useState(false); //isAuthenticated
   const [profileArtistName, setprofileArtistName] = useState("");
+  let [userName, setuserName] = useState("");
 
   const getFav = () => {
     const headers = {
@@ -77,7 +78,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <MyNavBar isAuth={isAuthenticated} setAuth={setisAuthenticated} />
+      <MyNavBar isAuth={isAuthenticated} setAuth={setisAuthenticated} userName={userName} />
       <Router>
         <Switch>
           {/* Homepage */}
@@ -108,7 +109,7 @@ const App = () => {
             path="/login"
             render={(props) =>
               !isAuthenticated ? (
-                <Login {...props} setAuth={setisAuthenticated} />
+                <Login {...props} setAuth={setisAuthenticated} setuserName={setuserName} />
               ) : (
                 <Redirect to="/" />
               )

@@ -2,12 +2,9 @@
 import { useState, useEffect } from "react";
 import { Navbar, Container, NavDropdown, Nav } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { UserGetName } from "./UserGetName";
 
 // navbar function
-const MyNavBar = ({ setAuth, isAuth }) => {
-  let [name, setName] = useState("");
-  let [trigger, setTrigger] = useState("");
+const MyNavBar = ({ setAuth, isAuth, userName }) => {
   // logout function
   const logout = (e) => {
     e.preventDefault();
@@ -15,10 +12,6 @@ const MyNavBar = ({ setAuth, isAuth }) => {
     setAuth(false);
     toast.success("Logged out successfully.");
   };
-  //when isAuth changes get name
-  useEffect(()=>{
-    setTrigger('aa')
-  },[isAuth])
 
   const GuestDropDown = () => {
     return (
@@ -31,7 +24,7 @@ const MyNavBar = ({ setAuth, isAuth }) => {
 
   const UserDropDown = () => {
     return (
-      <NavDropdown title={`Hi! ${name}`}>
+      <NavDropdown title={`Hi! ${userName}`}>
         <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
         <NavDropdown.Divider />
         <NavDropdown.Item
@@ -73,7 +66,6 @@ const MyNavBar = ({ setAuth, isAuth }) => {
           <LoggedDropDown isAuth={isAuth} />
         </Container>
       </Navbar>
-      <UserGetName trigger={trigger} setName={setName} />
     </div>
   );
 };
