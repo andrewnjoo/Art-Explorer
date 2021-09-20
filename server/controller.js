@@ -48,7 +48,7 @@ const getArtists = (req, res) => {
 // get popular artists
 const getPopularArtists = (req, res) => {
   try {
-    const payload = verify(req.header("token"));
+    // const payload = verify(req.header("token")); no need to verify
     pool
       .query("select name, count(*) from artists group by name order by count(*) desc;")
       .then((results) => {
