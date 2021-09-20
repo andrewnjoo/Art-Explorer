@@ -37,7 +37,6 @@ const SearchArtist = ({
   },[input]); // add dependency array to prevent auto searching when typing
 
   const AddArtistButton = ({ name, isAuthenticated }) => {
-    const [isClick, setClick] = useState(false);
     let [myName, setmyName] = useState("");
 
     //useffect
@@ -46,6 +45,7 @@ const SearchArtist = ({
       console.log("name is", name);
     }, [name]);
 
+    //add to favorites function
     const addToFavs = () => {
       const headers = {       //set headers
         "Content-Type": "application/json",

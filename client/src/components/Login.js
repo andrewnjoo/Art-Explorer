@@ -7,7 +7,7 @@ import { backendURL } from "../sharedVariables";
 import SampleArtist from "./SampleArtist";
 
 // login function
-const Login = ({ setAuth, setuserName }) => {
+const Login = ({ setAuth, getUserName }) => {
     const [inputs, setInputs] = useState({
       email: "",
       password: "",
@@ -70,21 +70,7 @@ const Login = ({ setAuth, setuserName }) => {
       }
     };
 
-    //get username
-    async function getUserName() {
-      try {
-        const response = await fetch(`${backendURL}dashboard/`, {
-          method: "GET",
-          headers: { token: localStorage.token },
-        });
-        const parseRes = await response.json();
-        console.log('parseRes', parseRes);
-        //set name
-        setuserName(parseRes.user_name)
-      } catch (err) {
-        console.error(err.message);
-      }
-    }
+
   
     return (
       <Container className="my-5 w-50" 

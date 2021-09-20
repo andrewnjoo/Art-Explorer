@@ -4,7 +4,7 @@ import { Navbar, Container, NavDropdown, Nav } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 // navbar function
-const MyNavBar = ({ setAuth, isAuth, userName }) => {
+const MyNavBar = ({ setAuth, isAuth, userName, getUserName }) => {
 
   // logout function
   const logout = (e) => {
@@ -24,6 +24,7 @@ const MyNavBar = ({ setAuth, isAuth, userName }) => {
   };
 
   const UserDropDown = () => {
+    getUserName()
     return (
       <NavDropdown title={`Hi! ${userName}`}>
         <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>

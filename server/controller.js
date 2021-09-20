@@ -46,11 +46,9 @@ const getArtists = (req, res) => {
 };
 
 // get popular artists
-
 const getPopularArtists = (req, res) => {
   try {
     const payload = verify(req.header("token"));
-    req.user = payload.user
     pool
       .query("select name, count(*) from artists group by name order by count(*) desc;")
       .then((results) => {

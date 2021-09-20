@@ -38,7 +38,23 @@ const App = () => {
   const [artists, setArtists] = useState([]);
   const [isAuthenticated, setisAuthenticated] = useState(false); //isAuthenticated
   const [profileArtistName, setprofileArtistName] = useState("");
-  let [userName, setuserName] = useState("");
+  const [userName, setuserName] = useState("");
+
+  //get username
+  async function getUserName() {
+    try {
+      const response = await fetch(`${backendURL}dashboard/`, {
+        method: "GET",
+        headers: { token: localStorage.token },
+      });
+      const parseRes = await response.json();
+      console.log("parseRes", parseRes);
+      //set name
+      setuserName(parseRes.user_name);
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
 
   const getFav = () => {
     const headers = {
@@ -79,7 +95,12 @@ const App = () => {
 
   return (
     <div className="App">
-      <MyNavBar isAuth={isAuthenticated} setAuth={setisAuthenticated} userName={userName} />
+      <MyNavBar
+        isAuth={isAuthenticated}
+        setAuth={setisAuthenticated}
+        userName={userName}
+        getUserName={getUserName}
+      />
       <Router>
         <Switch>
           {/* Homepage */}
@@ -110,7 +131,12 @@ const App = () => {
             path="/login"
             render={(props) =>
               !isAuthenticated ? (
-                <Login {...props} setAuth={setisAuthenticated} setuserName={setuserName} />
+                <Login
+                  {...props}
+                  setAuth={setisAuthenticated}
+                  setuserName={setuserName}
+                  getUserName={getUserName}
+                />
               ) : (
                 <Redirect to="/" />
               )
@@ -131,9 +157,17 @@ const App = () => {
           {/* art route */}
           <Route exact path="/artworks" render={(props) => <TabArtworks />} />
           {/* art movements */}
-          <Route exact path="/artmovements" render={(props) => <TabLearnAbout />} />
+          <Route
+            exact
+            path="/artmovements"
+            render={(props) => <TabLearnAbout />}
+          />
           {/* popular artists route */}
-          <Route exact path="/popularartists" render={(props) => <TabPopularArtists />} />
+          <Route
+            exact
+            path="/popularartists"
+            render={(props) => <TabPopularArtists />}
+          />
           {/* profile route */}
           <Route
             exact
