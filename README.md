@@ -18,9 +18,6 @@ Description: full stack (PERN) web app to find your favorite artists using the a
 - axios
 - bootstrap
 - jest
-
-### Bells & whistles:
-
 - three.js
 
 ### Back end tech:
