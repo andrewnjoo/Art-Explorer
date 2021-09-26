@@ -2,7 +2,8 @@
 
 > capstone project at devmtn
 
-<img src='./scrn2.png' width='250'>
+[<img src='scrn2.png' width='250'>](https://artexplorer-1.netlify.app/)
+
 
 Description: full stack (PERN) web app to find your favorite artists using the artsy api.
 
