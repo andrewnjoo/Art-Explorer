@@ -32,9 +32,9 @@ Description: full stack (PERN) web app to find your favorite artists using the a
 
 - jest
 
-### [Deployment](https://artexplorer-1.netlify.app/)
+### Deployment
 
-- front end netlify
+- front end [netlify](https://artexplorer-1.netlify.app/)
 - back end [heroku](https://protected-reaches-25441.herokuapp.com/)
 
 ### Quick-start instructions:
