@@ -76,7 +76,7 @@ const Login = ({ setAuth, getUserName }) => {
       <Container className="my-5 py-5 border" 
       style={{width: '400px',padding:'2em'}}
       >
-        <h1 className="text-center">Login</h1>
+        <h3 className="text-center">Login</h3>
         {/* Login Form */}
         <form className="text-center mt-5 mb-3" onSubmit={onSubmitForm}>
           <input
@@ -95,7 +95,7 @@ const Login = ({ setAuth, getUserName }) => {
             value={password}
             onChange={(e) => onChange(e)}
           ></input>
-          <button className="btn btn-success w-100">Sign In</button>
+          <button className="btn btn-success w-100">Login</button>
   
         </form>
         <div className="text-center">

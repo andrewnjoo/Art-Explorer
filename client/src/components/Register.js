@@ -1,6 +1,6 @@
 // import dependencies
 import React, { useState } from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Container } from "react-bootstrap";
 import { backendURL } from "../sharedVariables";
@@ -28,10 +28,10 @@ const Register = ({ setAuth }) => {
         body: JSON.stringify(body),
       });
       const parseRes = await response.json();
-      console.log(parseRes)
+      console.log(parseRes);
 
       if (parseRes.token) {
-        console.log('testing123')
+        console.log("testing123");
         localStorage.setItem("token", parseRes.token);
         setAuth(true);
         toast.success("Registered successfully");
@@ -45,10 +45,21 @@ const Register = ({ setAuth }) => {
   };
 
   return (
-    <Container className="w-50">
-      <h1 className="text-center my-5">Register</h1>
+    <Container
+      className="my-5 py-5 border"
+      style={{ width: "400px", padding: "2em" }}
+    >
+      <h3 className="text-center">Register</h3>
       {/* Register Form */}
       <form className="mb-3" onSubmit={onSubmitForm}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Username"
+          className="form-control my-3"
+          value={name}
+          onChange={(e) => onChange(e)}
+        ></input>
         <input
           type="email"
           name="email"
@@ -65,18 +76,12 @@ const Register = ({ setAuth }) => {
           value={password}
           onChange={(e) => onChange(e)}
         ></input>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          className="form-control my-3"
-          value={name}
-          onChange={(e) => onChange(e)}
-        ></input>
         <button className="btn btn-success w-100">Sign up</button>
       </form>
-      <div className="text-center mb-5">
-        <Link to="/login">Login</Link>
+      <div className="text-center">
+        <Link to="/login" style={{ textDecoration: "none" }}>
+          Login
+        </Link>
       </div>
     </Container>
   );
