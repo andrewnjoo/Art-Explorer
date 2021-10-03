@@ -107,7 +107,10 @@ const Login = ({ setAuth, getUserName }) => {
           >
             Demo
           </button>
-          <Link to="/register">Create Account</Link>
+          <span>
+          Don't have an account?
+          </span>
+          <Link to="/register" style={{ textDecoration: 'none' }}> Sign Up</Link>
         </div>
       </Container>
     );
