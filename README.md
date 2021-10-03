@@ -18,7 +18,6 @@ Description: full stack (PERN) web app to find your favorite artists using the a
 - react
 - axios
 - bootstrap
-- jest
 - three.js
 
 ### Back end tech:
@@ -28,6 +27,10 @@ Description: full stack (PERN) web app to find your favorite artists using the a
 - express
 - cors
 - [artsy api](https://developers.artsy.net/)
+
+### Testing:
+
+- jest
 
 ### [Deployment](https://artexplorer-1.netlify.app/)
 
