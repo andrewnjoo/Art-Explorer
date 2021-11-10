@@ -1,3 +1,5 @@
+11-10-21 update register/login styling
+
 09-09-21 - fix addartist component & backend
 
 09-13-21 - added delete route to server
