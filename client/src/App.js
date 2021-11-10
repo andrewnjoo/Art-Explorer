@@ -12,6 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import { backendURL } from "./sharedVariables";
 import axios from "axios";
+import "./index.css"
 
 //import components
 import SearchArtist from "./components/SearchArtist";

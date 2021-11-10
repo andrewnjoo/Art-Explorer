@@ -46,12 +46,13 @@ const Register = ({ setAuth }) => {
 
   return (
     <Container
-      className="my-5 py-5 border"
-      style={{ width: "400px", padding: "2em" }}
+    //Register Form
+    className="my-5 py-5 registerloginbox"
+      
     >
-      <h3 className="text-center">Register</h3>
-      {/* Register Form */}
+      <h3 className="text-center my-4">Sign Up</h3>
       <form className="mb-3" onSubmit={onSubmitForm}>
+        <h5>Username</h5>
         <input
           type="text"
           name="name"
@@ -60,6 +61,7 @@ const Register = ({ setAuth }) => {
           value={name}
           onChange={(e) => onChange(e)}
         ></input>
+        <h5>Email</h5>
         <input
           type="email"
           name="email"
@@ -67,7 +69,8 @@ const Register = ({ setAuth }) => {
           className="form-control my-3"
           value={email}
           onChange={(e) => onChange(e)}
-        ></input>
+          ></input>
+          <h5>Password</h5>
         <input
           type="password"
           name="password"
