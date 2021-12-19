@@ -20,6 +20,7 @@ const searchArtist = async (input) => {
     client_id: clientID,
     client_secret: clientSecret,
   });
+  // console.log('xapptoken',res.data.token)
   xappToken = res.data.token;
   //search artist
   const res2 = await axios.get(

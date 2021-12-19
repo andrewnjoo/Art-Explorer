@@ -158,16 +158,18 @@ const SearchArtist = ({
       client_id,
       client_secret,
     });
+    // console.log('xapptoken', res.data.token)
     xappToken = res.data.token;
     //search artist
     const res2 = await axios.get(
-      `https://api.artsy.net/api/search?q=${input}+more:pagemap:metatags-og_type:artist`,
+      `https://api.artsy.net/api/search?q=${input}`,
       {
         headers: {
           "X-XAPP-Token": xappToken,
         },
       }
     );
+    console.log('res2',res2)
     console.log(res2.data._embedded);
     // loop and search for artist
     for (let i in res2.data._embedded.results) {

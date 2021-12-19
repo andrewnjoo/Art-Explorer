@@ -7,7 +7,7 @@ const returnXappToken = async () => {
     client_secret,
   });
   let xappToken = res.data.token;
-  console.log(xappToken)
+  console.log('xapptoken',xappToken)
   return xappToken
 };
 
