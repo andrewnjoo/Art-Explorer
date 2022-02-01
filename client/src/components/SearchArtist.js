@@ -81,7 +81,7 @@ const SearchArtist = ({
       return <div></div>;
     } else {
       return (
-        <Card>
+        <Card style={{border:'none'}}>
           <Card.Body>
             <Card.Title>{result.title}</Card.Title>
             <AddArtistButton name={result.title} isAuthenticated={isAuthenticated} />
