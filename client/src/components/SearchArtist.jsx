@@ -4,7 +4,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { Card } from 'react-bootstrap';
 import {
   backendURL,
-  clientId,
+  clientID,
   clientSecret,
   apiUrl,
   sampleArtists,
@@ -120,7 +120,7 @@ function SearchArtist({
     console.log(searched);
     // get token
     const res = await axios.post(apiUrl, {
-      clientId,
+      clientID,
       clientSecret,
     });
     // console.log('xapptoken', res.data.token)
@@ -190,6 +190,10 @@ function SearchArtist({
     getRandomArtist();
   }, []);
 
+  useEffect(() => {
+    console.log('random artist', randomArtist);
+  }, [randomArtist]);
+
   if (!searched) {
     return (
       <div className="container text-center border mt-5">
@@ -197,8 +201,9 @@ function SearchArtist({
         <button
           type="button"
           onClick={() => {
+            // console.log('hi');
             searchFor(randomArtist);
-            getRandomArtist();
+            // getRandomArtist();
           }}
         >
           e.g. &nbsp;
@@ -235,7 +240,7 @@ function SearchArtist({
 
       <ArtistDetail isAuthenticated={isAuthenticated} />
 
-      <div className="mb-5" />
+      {/* <div className="mb-5" /> */}
     </div>
   );
 }

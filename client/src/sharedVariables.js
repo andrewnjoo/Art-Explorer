@@ -1,8 +1,8 @@
-// const backendURL = "http://localhost:4001/"; //local
+// const backendURL = 'http://localhost:4001/'; // dev
 const backendURL = 'https://protected-reaches-25441.herokuapp.com/'; // prod
 
 // artsy
-const clientId = 'd7b5e06fed971b560f2f';
+const clientID = 'd7b5e06fed971b560f2f';
 const clientSecret = '92122aaf680fe0def89ce3bcc6d9d1d5';
 const apiUrl = 'https://api.artsy.net/api/tokens/xapp_token';
 
@@ -51,5 +51,5 @@ const artImages = [
 ];
 
 export {
-  backendURL, clientId, clientSecret, apiUrl, sampleArtists, artImages,
+  backendURL, clientID, clientSecret, apiUrl, sampleArtists, artImages,
 };

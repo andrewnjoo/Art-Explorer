@@ -112,7 +112,7 @@ function Login({ setAuth, getUserName }) {
         >
           Demo
         </button>
-        <span>Don&pos;t have an account?</span>
+        <span>Don&apos;t have an account?</span>
         <Link to="/register" style={{ textDecoration: 'none' }}>
           {' '}
           Sign Up

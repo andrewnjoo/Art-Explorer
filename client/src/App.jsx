@@ -74,10 +74,13 @@ function App() {
   // pass jwt token to middleware in backend to check if authorized
   const isAuth = async () => {
     try {
-      return await fetch(`${backendURL}auth/is-verify`, {
+      const x = await fetch(`${backendURL}auth/is-verify`, {
         method: 'GET',
-        headers: { token: localStorage.token },
-      }).json();
+        headers: { token: localStorage.getItem('token') },
+      });
+      console.log(x.ok);
+      return x.ok;
+      // return x.json();
     } catch (err) {
       console.error(err.message);
       return null;
@@ -85,9 +88,16 @@ function App() {
   };
 
   // check if authenticated
-  useEffect(() => {
-    if (isAuth() === true) setisAuthenticated(true);
-    else setisAuthenticated(false);
+  useEffect(async () => {
+    const checkAuth = await isAuth();
+    // console.log(checkAuth);
+    if (checkAuth) {
+      console.log('auth');
+      setisAuthenticated(true);
+    } else {
+      console.log('not auth');
+      setisAuthenticated(false);
+    }
   }, []);
 
   return (
@@ -114,8 +124,8 @@ function App() {
                   getFav={getFav}
                 />
                 <SearchArtist
-                  profileArtistName={profileArtistName}
                   isAuthenticated={isAuthenticated}
+                  profileArtistName={profileArtistName}
                   artists={artists}
                   getFav={getFav}
                 />
@@ -174,7 +184,7 @@ function App() {
           />
         </Switch>
       </Router>
-      ;
+
       <Footer />
     </div>
   );

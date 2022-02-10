@@ -29,10 +29,10 @@ export default function TabPopularArtists() {
   const mapPopular = () => popular.map((x) => (
     <div>
       {x.name}
-      ,
+      :&nbsp;
       {x.count}
       {' '}
-      followers
+      Followers
     </div>
   ));
 

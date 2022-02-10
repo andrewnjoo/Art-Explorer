@@ -7,39 +7,41 @@ import { toast } from 'react-toastify';
 
 function GuestDropDown() {
   return (
-    <NavDropdown title="Login" classname="ms-auto">
+    <NavDropdown title="Login" className="ms-auto">
       <NavDropdown.Item href="/login">Login</NavDropdown.Item>
       <NavDropdown.Item href="/register">Register</NavDropdown.Item>
     </NavDropdown>
   );
 }
 
-function LoggedDropDown({ isAuth, getUserName, userName }) {
+function LoggedDropDown({
+  isAuth, getUserName, userName, setAuth,
+}) {
   return isAuth
     ? (
       <UserDropDown
         getUserName={getUserName}
         userName={userName}
+        setAuth={setAuth}
       />
     ) : <GuestDropDown />;
 }
 
-const logout = ({ e, setAuth }) => {
-  e.preventDefault();
-  localStorage.removeItem('token');
-  setAuth(false);
-  toast.success('Logged out successfully.');
-};
-
-function UserDropDown({ getUserName, userName }) {
+function UserDropDown({ getUserName, userName, setAuth }) {
   getUserName();
+  const logout = (e) => {
+    e.preventDefault();
+    localStorage.removeItem('token');
+    setAuth(false);
+    toast.success('Logged out successfully.');
+  };
   return (
     <NavDropdown title={`Hi! ${userName}`}>
       <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
       <NavDropdown.Divider />
       <NavDropdown.Item
         onClick={(e) => {
-          logout(e);
+          logout(e, setAuth);
         }}
       >
         Logout
@@ -48,7 +50,9 @@ function UserDropDown({ getUserName, userName }) {
   );
 }
 
-function MyNavBar({ isAuth, userName, getUserName }) {
+function MyNavBar({
+  isAuth, userName, getUserName, setAuth,
+}) {
   return (
     <div>
       <Navbar bg="dark" variant="dark" expand="lg">
@@ -80,6 +84,7 @@ function MyNavBar({ isAuth, userName, getUserName }) {
                 isAuth={isAuth}
                 getUserName={getUserName}
                 userName={userName}
+                setAuth={setAuth}
               />
             </Nav>
           </Navbar.Collapse>

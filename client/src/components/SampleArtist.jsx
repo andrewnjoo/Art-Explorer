@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container } from 'react-bootstrap';
 import {
-  sampleArtists, clientId, clientSecret, apiUrl,
+  sampleArtists, clientID, clientSecret, apiUrl,
 } from '../sharedVariables';
 
 // sampleartist component
@@ -25,7 +25,7 @@ function SampleArtist() {
   const search = async (input) => {
     // get auth-token
     const res = await axios.post(apiUrl, {
-      clientId,
+      clientID,
       clientSecret,
     });
     xappToken = res.data.token;

@@ -4,6 +4,7 @@ require("dotenv").config();
 module.exports = async (req, res, next) => {
   try {
     //1. destructure token
+    console.log(req)
     const jwtToken = req.header("token");
 
     // console.log('token is:',jwtToken)

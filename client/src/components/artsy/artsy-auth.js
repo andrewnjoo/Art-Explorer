@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { apiUrl, clientId, clientSecret } from '../../sharedVariables';
+import { apiUrl, clientID, clientSecret } from '../../sharedVariables';
 
 const returnXappToken = async () => {
   const res = await axios.post(apiUrl, {
-    clientId,
+    clientID,
     clientSecret,
   });
   const xappToken = res.data.token;

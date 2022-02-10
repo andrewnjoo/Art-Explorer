@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Container } from 'react-bootstrap';
 import axios from 'axios';
-import { apiUrl, clientId, clientSecret } from '../sharedVariables';
+import { apiUrl, clientID, clientSecret } from '../sharedVariables';
 
 function TabeLearnAbout() {
   const [loading, setLoading] = useState(false);
@@ -10,8 +10,9 @@ function TabeLearnAbout() {
 
   // get artsy genes
   const getGenes = async (input) => {
-    const res = await axios.post(apiUrl, { clientId, clientSecret });
+    const res = await axios.post(apiUrl, { client_id: clientID, client_secret: clientSecret });
     const headers = { 'X-XAPP-Token': res.data.token };
+    console.log('resss', res);
     axios
       .get(`https://api.artsy.net/api/genes?artist_id=${input}`, { headers })
       .then((res1) => {
@@ -34,9 +35,9 @@ function TabeLearnAbout() {
   useEffect(() => {
     // hockney
     getGenes('4d8b92854eb68a1b2c0001b6');
-    // learn about van gogh 4d8b92944eb68a1b2c000264
-    // learn about basquiat 4db455226c0cee664800053c
-    // learn about da vinci 4d8b92684eb68a1b2c00009e
+    // van gogh 4d8b92944eb68a1b2c000264
+    // basquiat 4db455226c0cee664800053c
+    // da vinci 4d8b92684eb68a1b2c00009e
   });
 
   // conditional render
