@@ -1,21 +1,20 @@
-//import dependencies
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
-import { Container } from "react-bootstrap";
-import { backendURL } from "../sharedVariables";
+// import dependencies
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { Container } from 'react-bootstrap';
+import { backendURL } from '../sharedVariables';
 
 // login function
-const Login = ({ setAuth, getUserName }) => {
+function Login({ setAuth, getUserName }) {
   const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const { email, password } = inputs;
 
-  const onChange = (e) =>
-    setInputs({ ...inputs, [e.target.name]: e.target.value });
+  const onChange = (e) => setInputs({ ...inputs, [e.target.name]: e.target.value });
 
   // onsubmit function
   const onSubmitForm = async (e) => {
@@ -24,8 +23,8 @@ const Login = ({ setAuth, getUserName }) => {
       const body = { email, password };
       // console.log(body);
       const response = await fetch(`${backendURL}auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
       const parseRes = await response.json();
@@ -33,9 +32,9 @@ const Login = ({ setAuth, getUserName }) => {
 
       if (parseRes.token) {
         // set token in localStorage
-        localStorage.setItem("token", parseRes.token);
+        localStorage.setItem('token', parseRes.token);
         setAuth(true);
-        toast.success("Successfully logged in");
+        toast.success('Successfully logged in');
         getUserName();
       } else {
         setAuth(false);
@@ -46,25 +45,25 @@ const Login = ({ setAuth, getUserName }) => {
     }
   };
 
-  //demo login
+  // demo login
   const demoUser = async () => {
-    let body = {
-      email: "demo@demo.com",
-      password: "demo",
+    const body = {
+      email: 'demo@demo.com',
+      password: 'demo',
     };
     const response = await fetch(`${backendURL}auth/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     });
     const parseRes = await response.json();
-    console.log("parseres is ", parseRes);
+    console.log('parseres is ', parseRes);
 
     if (parseRes.token) {
       // set token in localStorage
-      localStorage.setItem("token", parseRes.token);
+      localStorage.setItem('token', parseRes.token);
       setAuth(true);
-      toast.success("Successfully logged in");
+      toast.success('Successfully logged in');
       getUserName();
     }
   };
@@ -77,7 +76,7 @@ const Login = ({ setAuth, getUserName }) => {
       <h1 className="text-center">Login</h1>
 
       <form className=" mt-5 mb-3" onSubmit={onSubmitForm}>
-      <h5>Email</h5>
+        <h5>Email</h5>
         <input
           type="email"
           name="email"
@@ -85,7 +84,7 @@ const Login = ({ setAuth, getUserName }) => {
           className="form-control my-3"
           value={email}
           onChange={(e) => onChange(e)}
-        ></input>
+        />
         <h5>Password</h5>
         <input
           type="password"
@@ -94,11 +93,18 @@ const Login = ({ setAuth, getUserName }) => {
           className="form-control my-3"
           value={password}
           onChange={(e) => onChange(e)}
-        ></input>
-        <button className="btn btn-success w-100">Login</button>
+        />
+        <button
+          type="button"
+          className="btn btn-success w-100"
+        >
+          Login
+
+        </button>
       </form>
       <div className="text-center">
         <button
+          type="button"
           className="btn btn-warning w-100 mb-3"
           onClick={() => {
             demoUser();
@@ -106,13 +112,13 @@ const Login = ({ setAuth, getUserName }) => {
         >
           Demo
         </button>
-        <span>Don't have an account?</span>
-        <Link to="/register" style={{ textDecoration: "none" }}>
-          {" "}
+        <span>Don&pos;t have an account?</span>
+        <Link to="/register" style={{ textDecoration: 'none' }}>
+          {' '}
           Sign Up
         </Link>
       </div>
     </Container>
   );
-};
+}
 export default Login;

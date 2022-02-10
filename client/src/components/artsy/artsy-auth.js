@@ -1,14 +1,14 @@
-import { apiUrl, client_id, client_secret} from "../../sharedVariables";
-import axios from "axios";
+import axios from 'axios';
+import { apiUrl, clientId, clientSecret } from '../../sharedVariables';
 
 const returnXappToken = async () => {
   const res = await axios.post(apiUrl, {
-    client_id,
-    client_secret,
+    clientId,
+    clientSecret,
   });
-  let xappToken = res.data.token;
-  console.log('xapptoken',xappToken)
-  return xappToken
+  const xappToken = res.data.token;
+  console.log('xapptoken', xappToken);
+  return xappToken;
 };
 
-export default returnXappToken
+export default returnXappToken;

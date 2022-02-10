@@ -1,10 +1,12 @@
-export default function Footer () {
+import React from 'react';
+
+export default function Footer() {
   return (
     <div
       className="text-center"
       style={{
-        marginTop: "200px",
-        marginBottom: "20px",
+        marginTop: '200px',
+        marginBottom: '20px',
       }}
     >
       app made by &nbsp;
@@ -17,4 +19,4 @@ export default function Footer () {
       </a>
     </div>
   );
-};
+}
