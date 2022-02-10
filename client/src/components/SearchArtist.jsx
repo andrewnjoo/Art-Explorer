@@ -1,7 +1,7 @@
 // import modules
 import axios from 'axios';
-import React, { useEffect, useState, useMemo } from 'react';
-import { Card } from 'react-bootstrap';
+import React, { Suspense, useEffect, useState } from 'react';
+import { Card, Spinner } from 'react-bootstrap';
 import {
   backendURL,
   clientID,
@@ -17,22 +17,7 @@ function SearchArtist({
   artists,
   getFav,
 }) {
-  let xappToken;
   const [input, setInput] = useState('');
-  const [searched, setSearched] = useState(false);
-  const [result, setResult] = useState({
-    _links: {
-      permalink: {
-        href: '',
-      },
-      thumbnail: {
-        href: '',
-      },
-    },
-    biography: '',
-  });
-  const [bio, setBio] = useState('');
-  const [randomArtist, setrandomArtist] = useState('');
 
   // get from dashboard-app-searchartist
   useEffect(() => {
@@ -44,7 +29,14 @@ function SearchArtist({
     setInput(profileArtistName);
   }, [profileArtistName]); // if profileartistname changed in dashboard, we change input to PAN
 
-  const AddArtistButton = useMemo((name, isAuthenticated) => {
+  // auto search for artist, if input changes we search for input, no need to type enter
+  useEffect(() => {
+    if (input !== '') {
+      searchFor(input);
+    }
+  }, [input]); // add dependency array to prevent auto searching when typing
+
+  function AddArtistButton({ name, isAuthenticated }) {
     const [myName, setmyName] = useState('');
 
     // useffect
@@ -69,7 +61,7 @@ function SearchArtist({
             headers,
           },
         )
-        .then(() => {
+        .then((res) => {
           getFav();
         });
     };
@@ -78,20 +70,13 @@ function SearchArtist({
     }
     return (
       <div className="my-3">
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={addToFavs}
-        >
-          Follow
-
-        </button>
+        <button className="btn btn-primary" onClick={addToFavs}>Follow</button>
       </div>
     );
-  });
+  }
 
   // artist detail function
-  const ArtistDetail = useMemo((isAuthenticated) => {
+  function ArtistDetail({ isAuthenticated }) {
     if (!searched) {
       return <div />;
     }
@@ -113,38 +98,28 @@ function SearchArtist({
         </Card.Body>
       </Card>
     );
-  });
+  }
 
-  const search = async (input) => {
-    setSearched(true);
-    console.log(searched);
-    // get token
-    const res = await axios.post(apiUrl, {
-      clientID,
-      clientSecret,
-    });
-    // console.log('xapptoken', res.data.token)
-    xappToken = res.data.token;
-    // search artist
-    const res2 = await axios.get(
-      `https://api.artsy.net/api/search?q=${input}`,
-      {
-        headers: {
-          'X-XAPP-Token': xappToken,
-        },
+  // function variables
+  let xappToken;
+  let [searched, setSearched] = useState(false);
+  let [result, setResult] = useState({
+    _links: {
+      permalink: {
+        href: '',
       },
-    );
-    console.log('res2', res2);
-    console.log(res2.data._embedded);
-    // loop and search for artist
-    for (let i = 0; i < res2.data._embedded.results.length; i += 1) {
-      if (res2.data._embedded.results[i].type === 'artist') {
-        return res2.data._embedded.results[i];
-      }
-    }
-    // if not artist found
-    return 'no-artist-found';
-  };
+      thumbnail: {
+        href: '',
+      },
+    },
+    biography: '',
+  });
+  let [bio, setBio] = useState('');
+  const [randomArtist, setrandomArtist] = useState('');
+
+  useEffect(() => {
+    getRandomArtist();
+  }, []);
 
   const searchFor = async (input) => {
     const data = await search(input);
@@ -169,46 +144,57 @@ function SearchArtist({
     // console.log("bio", bio);
   };
 
-  // auto search for artist, if input changes we search for input, no need to type enter
-  useEffect(() => {
-    if (input !== '') {
-      searchFor(input);
-    }
-  }, [input]); // add dependency array to prevent auto searching when typing
-
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       searchFor(input);
     }
   };
-
+  const search = async (input) => {
+    setSearched(true);
+    console.log(searched);
+    // get token
+    const res = await axios.post(apiUrl, {
+      client_id: clientID,
+      client_secret: clientSecret,
+    });
+    // console.log('xapptoken', res.data.token)
+    xappToken = res.data.token;
+    // search artist
+    const res2 = await axios.get(
+      `https://api.artsy.net/api/search?q=${input}`,
+      {
+        headers: {
+          'X-XAPP-Token': xappToken,
+        },
+      },
+    );
+    console.log('res2', res2);
+    console.log(res2.data._embedded);
+    // loop and search for artist
+    for (const i in res2.data._embedded.results) {
+      if (res2.data._embedded.results[i].type === 'artist') {
+        return res2.data._embedded.results[i];
+      }
+    }
+    // if not artist found
+    return 'no-artist-found';
+  };
   const getRandomArtist = () => {
     setrandomArtist(sampleArtists[Math.floor(Math.random() * sampleArtists.length)]);
   };
-
-  useEffect(() => {
-    getRandomArtist();
-  }, []);
-
-  useEffect(() => {
-    console.log('random artist', randomArtist);
-  }, [randomArtist]);
-
   if (!searched) {
     return (
       <div className="container text-center border mt-5">
         <h2>Search for artists</h2>
-        <button
-          type="button"
+        <h4
           onClick={() => {
-            // console.log('hi');
             searchFor(randomArtist);
-            // getRandomArtist();
+            getRandomArtist();
           }}
         >
           e.g. &nbsp;
           {randomArtist}
-        </button>
+        </h4>
         <br />
         <input
           style={{ minWidth: '220' }}
@@ -222,8 +208,7 @@ function SearchArtist({
   return (
     <div className="container text-center border my-2">
       <h2>Search for artists</h2>
-      <button
-        type="button"
+      <h4
         onClick={() => {
           searchFor(randomArtist);
           getRandomArtist();
@@ -231,7 +216,7 @@ function SearchArtist({
       >
         e.g. &nbsp;
         {randomArtist}
-      </button>
+      </h4>
       <input
         value={input}
         onChange={(e) => setInput(e.target.value)}
@@ -240,7 +225,7 @@ function SearchArtist({
 
       <ArtistDetail isAuthenticated={isAuthenticated} />
 
-      {/* <div className="mb-5" /> */}
+      <div className="mb-5" />
     </div>
   );
 }

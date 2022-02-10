@@ -10,7 +10,10 @@ function TabeLearnAbout() {
 
   // get artsy genes
   const getGenes = async (input) => {
-    const res = await axios.post(apiUrl, { client_id: clientID, client_secret: clientSecret });
+    const res = await axios.post(apiUrl, {
+      client_id: clientID,
+      client_secret: clientSecret,
+    });
     const headers = { 'X-XAPP-Token': res.data.token };
     console.log('resss', res);
     axios
