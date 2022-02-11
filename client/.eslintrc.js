@@ -19,9 +19,11 @@ module.exports = {
   ],
   rules: {
     'react/prop-types': 'off',
-    // 'react/no-unstable-nested-components': 'off',
+    // memoization
+    'react/no-unstable-nested-components': 'off',
     // Artsy API uses underscore dangle
     'no-underscore-dangle': 'off',
     'no-shadow': 'off',
+    'jsx-a1yy/no-noninteractive-element-interactions': 'off',
   },
 };

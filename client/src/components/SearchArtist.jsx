@@ -1,7 +1,7 @@
 // import modules
 import axios from 'axios';
-import React, { Suspense, useEffect, useState } from 'react';
-import { Card, Spinner } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Card } from 'react-bootstrap';
 import {
   backendURL,
   clientID,
@@ -17,7 +17,23 @@ function SearchArtist({
   artists,
   getFav,
 }) {
+  // function variables
   const [input, setInput] = useState('');
+  let xappToken;
+  const [searched, setSearched] = useState(false);
+  const [result, setResult] = useState({
+    _links: {
+      permalink: {
+        href: '',
+      },
+      thumbnail: {
+        href: '',
+      },
+    },
+    biography: '',
+  });
+  const [bio, setBio] = useState('');
+  const [randomArtist, setrandomArtist] = useState('');
 
   // get from dashboard-app-searchartist
   useEffect(() => {
@@ -28,6 +44,60 @@ function SearchArtist({
   useEffect(() => {
     setInput(profileArtistName);
   }, [profileArtistName]); // if profileartistname changed in dashboard, we change input to PAN
+
+  const search = async (input) => {
+    setSearched(true);
+    console.log(searched);
+    // get token
+    const res = await axios.post(apiUrl, {
+      client_id: clientID,
+      client_secret: clientSecret,
+    });
+    // console.log('xapptoken', res.data.token)
+    xappToken = res.data.token;
+    // search artist
+    const res2 = await axios.get(
+      `https://api.artsy.net/api/search?q=${input}`,
+      {
+        headers: {
+          'X-XAPP-Token': xappToken,
+        },
+      },
+    );
+    console.log('res2', res2);
+    console.log(res2.data._embedded);
+    // loop and search for artist
+    for (let i = 0; i < res2.data._embedded.results.length; i += 1) {
+      if (res2.data._embedded.results[i].type === 'artist') {
+        return res2.data._embedded.results[i];
+      }
+    }
+    // if not artist found
+    return 'no-artist-found';
+  };
+
+  const searchFor = async (input) => {
+    const data = await search(input);
+    // console.log("data is", data);
+    if (data === 'no-artist-found') {
+      const resultCopy = result;
+      resultCopy.title = 'artist not found';
+      setResult(resultCopy);
+      return;
+    }
+    setResult(data);
+    const bioURL = data._links.self.href;
+    // get artist biography
+    const res3 = await axios.get(bioURL, {
+      headers: {
+        'X-XAPP-Token': xappToken,
+      },
+    });
+    // console.log(res3)
+    // console.log("biography", res3.data.biography);
+    setBio(res3.data.biography);
+    // console.log("bio", bio);
+  };
 
   // auto search for artist, if input changes we search for input, no need to type enter
   useEffect(() => {
@@ -61,7 +131,7 @@ function SearchArtist({
             headers,
           },
         )
-        .then((res) => {
+        .then(() => {
           getFav();
         });
     };
@@ -70,7 +140,14 @@ function SearchArtist({
     }
     return (
       <div className="my-3">
-        <button className="btn btn-primary" onClick={addToFavs}>Follow</button>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={addToFavs}
+        >
+          Follow
+
+        </button>
       </div>
     );
   }
@@ -100,93 +177,26 @@ function SearchArtist({
     );
   }
 
-  // function variables
-  let xappToken;
-  let [searched, setSearched] = useState(false);
-  let [result, setResult] = useState({
-    _links: {
-      permalink: {
-        href: '',
-      },
-      thumbnail: {
-        href: '',
-      },
-    },
-    biography: '',
-  });
-  let [bio, setBio] = useState('');
-  const [randomArtist, setrandomArtist] = useState('');
-
-  useEffect(() => {
-    getRandomArtist();
-  }, []);
-
-  const searchFor = async (input) => {
-    const data = await search(input);
-    // console.log("data is", data);
-    if (data === 'no-artist-found') {
-      const resultCopy = result;
-      resultCopy.title = 'artist not found';
-      setResult(resultCopy);
-      return;
-    }
-    setResult(data);
-    const bioURL = data._links.self.href;
-    // get artist biography
-    const res3 = await axios.get(bioURL, {
-      headers: {
-        'X-XAPP-Token': xappToken,
-      },
-    });
-    // console.log(res3)
-    // console.log("biography", res3.data.biography);
-    setBio(res3.data.biography);
-    // console.log("bio", bio);
-  };
-
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       searchFor(input);
     }
   };
-  const search = async (input) => {
-    setSearched(true);
-    console.log(searched);
-    // get token
-    const res = await axios.post(apiUrl, {
-      client_id: clientID,
-      client_secret: clientSecret,
-    });
-    // console.log('xapptoken', res.data.token)
-    xappToken = res.data.token;
-    // search artist
-    const res2 = await axios.get(
-      `https://api.artsy.net/api/search?q=${input}`,
-      {
-        headers: {
-          'X-XAPP-Token': xappToken,
-        },
-      },
-    );
-    console.log('res2', res2);
-    console.log(res2.data._embedded);
-    // loop and search for artist
-    for (const i in res2.data._embedded.results) {
-      if (res2.data._embedded.results[i].type === 'artist') {
-        return res2.data._embedded.results[i];
-      }
-    }
-    // if not artist found
-    return 'no-artist-found';
-  };
   const getRandomArtist = () => {
     setrandomArtist(sampleArtists[Math.floor(Math.random() * sampleArtists.length)]);
   };
+
+  useEffect(() => {
+    getRandomArtist();
+  }, []);
+
   if (!searched) {
     return (
       <div className="container text-center border mt-5">
         <h2>Search for artists</h2>
-        <h4
+        <button
+          className="search-button"
+          type="button"
           onClick={() => {
             searchFor(randomArtist);
             getRandomArtist();
@@ -194,7 +204,7 @@ function SearchArtist({
         >
           e.g. &nbsp;
           {randomArtist}
-        </h4>
+        </button>
         <br />
         <input
           style={{ minWidth: '220' }}
@@ -208,7 +218,9 @@ function SearchArtist({
   return (
     <div className="container text-center border my-2">
       <h2>Search for artists</h2>
-      <h4
+      <button
+        className="search-button"
+        type="button"
         onClick={() => {
           searchFor(randomArtist);
           getRandomArtist();
@@ -216,7 +228,8 @@ function SearchArtist({
       >
         e.g. &nbsp;
         {randomArtist}
-      </h4>
+      </button>
+      <br />
       <input
         value={input}
         onChange={(e) => setInput(e.target.value)}
