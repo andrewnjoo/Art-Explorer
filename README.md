@@ -1,43 +1,51 @@
-## artExplorer
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <img src='./src/assets/mona2.png' width='80'>
+  <h3 align="center">Art Explorer</h3>
+  <p align="center">
+    This application allows you to find your favorite artists using the Artsy API
+    <br />
+    <br />
+    <a href="https://artexplorer-1.netlify.app/">Try App</a>
+    <br />
+  </p>
+</p>
 
-> capstone project at devmtn
+<p align="center">
+<a href='https://andrew-movie-app.netlify.app/'>
+<img src='./scrn2.png' width='250'><br>
+</a>
+</p>
 
-[<img src='scrn2.png' width='250'>](https://artexplorer-1.netlify.app/)
-
-
-Description: full stack (PERN) web app to find your favorite artists using the artsy api.
+<br>
 
 ### Features:
 
-- encrypted login/register
-- API calls to artsy and to db
-- CRUD functionality (add fav artist, delete fav artist)
+- Encrypted Login & Register
+- API calls to Artsy and to database
+- CRUD functionality
+- Responsive application
 
-### Front end tech:
+### Technologies Used:
 
-- react
-- axios
-- bootstrap
-- three.js
-
-### Back end tech:
-
-- nodemon
-- postgres
-- express
-- cors
-- [artsy api](https://developers.artsy.net/)
-
-### Testing:
-
-- jest
+- React
+- Axios
+- Bootstrap
+- Three.js
+- Nodemon
+- Postgres
+- Express
+- CORS
+- [Artsy API](https://developers.artsy.net/)
+- Jest
 
 ### Deployment:
 
-- front end [netlify](https://artexplorer-1.netlify.app/)
-- back end [heroku](https://protected-reaches-25441.herokuapp.com/)
+- Front End [Netlify](https://artexplorer-1.netlify.app/)
+- Back End [Heroku](https://protected-reaches-25441.herokuapp.com/)
 
-### Quick-start instructions:
+### Quick-Start Instructions:
 
 ```
 git clone https://github.com/adnjoo/artexplorer
@@ -45,7 +53,7 @@ cd artexplorer
 npm run dev
 ```
 
-### Run tests:
+### Run Tests:
 
 ```
 npm test
