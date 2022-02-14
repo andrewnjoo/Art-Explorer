@@ -49,8 +49,17 @@
 
 ```
 git clone https://github.com/adnjoo/artexplorer
-cd artexplorer
-npm run dev
+cd artexplorer/client
+npm install
+npm start
+```
+
+Simultaneously:
+
+```
+cd server
+npm install
+npm start
 ```
 
 ### Run Tests:
