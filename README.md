@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  [https://artexplorer-1.netlify.app/](<img src='./assets/mona2.png' width='80'>)
+  [<img src='./assets/mona2.png' width='80'>](https://artexplorer-1.netlify.app/)
   <h3 align="center">Art Explorer</h3>
   <p align="center">
     This application allows you to find your favorite artists using the Artsy API
