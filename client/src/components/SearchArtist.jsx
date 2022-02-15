@@ -193,7 +193,7 @@ function SearchArtist({
   if (!searched) {
     return (
       <div className="container text-center border mt-5">
-        <h2>Search for artists</h2>
+        <h2 className="mt-3">Search for artists</h2>
         <button
           className="search-button"
           type="button"
@@ -217,7 +217,7 @@ function SearchArtist({
   }
   return (
     <div className="container text-center border my-2">
-      <h2>Search for artists</h2>
+      <h2 className="mt-3">Search for artists</h2>
       <button
         className="search-button"
         type="button"
