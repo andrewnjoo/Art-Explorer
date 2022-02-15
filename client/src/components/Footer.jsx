@@ -9,7 +9,7 @@ export default function Footer() {
         marginBottom: '20px',
       }}
     >
-      app made by &nbsp;
+      app made by&nbsp;
       <a
         href="https://github.com/adnjoo/artexplorer"
         target="_blank"

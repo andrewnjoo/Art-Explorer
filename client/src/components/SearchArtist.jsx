@@ -142,7 +142,7 @@ function SearchArtist({
       <div className="my-3">
         <button
           type="button"
-          className="btn btn-primary"
+          className="btn btn-primary btn-rounded"
           onClick={addToFavs}
         >
           Follow
@@ -169,7 +169,7 @@ function SearchArtist({
           >
             <img alt="thumbnail" src={result._links.thumbnail.href} />
           </a>
-          <Card.Text id="biography">
+          <Card.Text id="biography" style={{ margin: '20px 50px' }}>
             {bio === '' ? 'no bio available' : bio}
           </Card.Text>
         </Card.Body>

@@ -17,7 +17,7 @@ export default function TabPopularArtists() {
         headers,
       })
       .then((res) => {
-        console.log(res.data.rows);
+        // console.log(res.data.rows);
         setPopular(res.data.rows);
       });
   };
@@ -26,13 +26,13 @@ export default function TabPopularArtists() {
     getPopularArtists();
   }, []);
 
-  const mapPopular = () => popular.map((x) => (
+  const mapPopular = () => popular.map((artist) => (
     <div>
-      {x.name}
+      {artist.name}
       :&nbsp;
-      {x.count}
+      {artist.count}
       {' '}
-      Followers
+      ❤️
     </div>
   ));
 
@@ -48,5 +48,6 @@ export default function TabPopularArtists() {
   );
 }
 
+// notes
 // popular artists
 // select name,count(*) from artists group by name order by count(*) desc;
