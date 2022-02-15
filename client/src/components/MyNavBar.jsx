@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 function GuestDropDown() {
   return (
-    <NavDropdown title="Login" className="ms-auto">
+    <NavDropdown title="Login" className="">
       <NavDropdown.Item href="/login">Login</NavDropdown.Item>
       <NavDropdown.Item href="/register">Register</NavDropdown.Item>
     </NavDropdown>
