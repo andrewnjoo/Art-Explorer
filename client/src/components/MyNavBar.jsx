@@ -95,3 +95,8 @@ function MyNavBar({
 }
 
 export default MyNavBar;
+
+// notes
+// ms-auto means margin start auto
+// LTR left -> right
+// RTL right -> left
