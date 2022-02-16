@@ -71,7 +71,7 @@ function Dashboard({
         <Card className="text-center">
           <Card.Body>
             <Card.Title>Dashboard</Card.Title>
-            <Card.Subtitle>My favorite artists:</Card.Subtitle>
+            <Card.Subtitle>My ❤️ artists:</Card.Subtitle>
             {mapArtists()}
           </Card.Body>
         </Card>
