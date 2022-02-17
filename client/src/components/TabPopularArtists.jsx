@@ -58,7 +58,7 @@ export default function TabPopularArtists() {
 
   const mapArtists = () => popular.map((artist) => (
     <div className="grid-item">
-      <h4>{artist.name}</h4>
+      <h4 className="grid-header">{artist.name}</h4>
       <a href={artist?.artsy?._links?.permalink?.href} target="_blank" rel="noreferrer">
         <img
           alt=""
