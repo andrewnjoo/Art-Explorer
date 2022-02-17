@@ -53,6 +53,15 @@ export default function TabPopularArtists() {
       })
       .then((res) => {
         setPopular(res.data.rows);
+        console.log(res.data.rows);
+        res.data.rows.forEach((x, idx) => {
+          // delay API request to prevent error code 429
+          setTimeout(async () => {
+            const y = (await search(x.name));
+            console.log(y);
+            console.log(popular);
+          }, 100 + idx * 230);
+        });
       });
   };
 
