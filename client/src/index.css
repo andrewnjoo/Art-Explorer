@@ -12,3 +12,18 @@
   border: none;
   background-color: #ffffff;
 }
+
+/* Grid for TabPopularArtists */
+
+.grid-container {
+  margin: auto;
+  max-width:80%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+}
+.grid-item {
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}

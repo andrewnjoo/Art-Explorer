@@ -25,5 +25,6 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'no-shadow': 'off',
     'jsx-a1yy/no-noninteractive-element-interactions': 'off',
+    'jsx-a1yy/alt-text': 'off',
   },
 };
