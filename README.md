@@ -24,8 +24,8 @@
 
 - Encrypted Login & Register
 - API calls to Artsy and to database
-- CRUD functionality
-- Responsive application
+- CRUD Functionality
+- Responsive Application
 
 ### Technologies Used:
 

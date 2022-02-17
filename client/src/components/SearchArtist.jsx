@@ -142,7 +142,7 @@ function SearchArtist({
       <div className="my-3">
         <button
           type="button"
-          className="btn btn-primary"
+          className="btn btn-primary btn-rounded"
           onClick={addToFavs}
         >
           Follow
@@ -169,7 +169,7 @@ function SearchArtist({
           >
             <img alt="thumbnail" src={result._links.thumbnail.href} />
           </a>
-          <Card.Text id="biography">
+          <Card.Text id="biography" style={{ margin: '20px 50px' }}>
             {bio === '' ? 'no bio available' : bio}
           </Card.Text>
         </Card.Body>
@@ -193,6 +193,33 @@ function SearchArtist({
   if (!searched) {
     return (
       <div className="container text-center border mt-5">
+        <div className="my-5">
+          <h2 className="mt-3">Search for artists</h2>
+          <button
+            className="search-button"
+            type="button"
+            onClick={() => {
+              searchFor(randomArtist);
+              getRandomArtist();
+            }}
+          >
+            e.g. &nbsp;
+            {randomArtist}
+          </button>
+          <br />
+          <input
+            style={{ minWidth: '220' }}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className="container text-center border my-2">
+      <div className="my-5">
         <h2>Search for artists</h2>
         <button
           className="search-button"
@@ -207,38 +234,15 @@ function SearchArtist({
         </button>
         <br />
         <input
-          style={{ minWidth: '220' }}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
         />
+
+        <ArtistDetail isAuthenticated={isAuthenticated} />
+
+        <div className="mb-5" />
       </div>
-    );
-  }
-  return (
-    <div className="container text-center border my-2">
-      <h2>Search for artists</h2>
-      <button
-        className="search-button"
-        type="button"
-        onClick={() => {
-          searchFor(randomArtist);
-          getRandomArtist();
-        }}
-      >
-        e.g. &nbsp;
-        {randomArtist}
-      </button>
-      <br />
-      <input
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={handleKeyDown}
-      />
-
-      <ArtistDetail isAuthenticated={isAuthenticated} />
-
-      <div className="mb-5" />
     </div>
   );
 }

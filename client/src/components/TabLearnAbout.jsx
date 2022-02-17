@@ -70,7 +70,7 @@ function TabeLearnAbout() {
     <div>
       <Container className="text-center my-5">
         <h2>
-          Learn about Art Movements:
+          Learn about Art Movements
         </h2>
         <br />
         <div id="subcontainer">{renderIf()}</div>
