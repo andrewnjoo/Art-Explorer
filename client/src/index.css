@@ -13,6 +13,20 @@
   background-color: #ffffff;
 }
 
+.learn-about-art-card {
+  width: 80%;
+  margin: auto;
+}
+
+.learn-about-art-img {
+  width: 150px;
+}
+
+.form-control {
+  max-width: 500px;
+  margin: auto;
+}
+
 /* Grid for TabPopularArtists */
 
 .grid-container {
@@ -35,6 +49,11 @@
 
 /* Devices smaller than 600px */
 @media only screen and (max-width: 600px) {
+
+  .learn-about-art-card {
+    width: 100%;
+  }
+
   .grid-container {
     max-width: 100%;
   }

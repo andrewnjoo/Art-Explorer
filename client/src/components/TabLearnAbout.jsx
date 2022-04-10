@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Container } from 'react-bootstrap';
+import { Form, Card, Container } from 'react-bootstrap';
 import axios from 'axios';
 import { apiUrl, clientID, clientSecret } from '../sharedVariables';
 
@@ -37,10 +37,13 @@ function TabeLearnAbout() {
 
   useEffect(() => {
     // hockney
-    getGenes('4d8b92854eb68a1b2c0001b6');
-    // van gogh 4d8b92944eb68a1b2c000264
-    // basquiat 4db455226c0cee664800053c
-    // da vinci 4d8b92684eb68a1b2c00009e
+    // getGenes('4d8b92854eb68a1b2c0001b6');
+    // van gogh
+    // getGenes('4d8b92944eb68a1b2c000264');
+    // basquiat
+    // getGenes('4db455226c0cee664800053c');
+    // da vinci
+    getGenes('4d8b92684eb68a1b2c00009e');
   });
 
   // conditional render
@@ -50,11 +53,11 @@ function TabeLearnAbout() {
     genes.map((x) => {
       if (x.name !== null) {
         return (
-          <Card style={{ width: '70%', margin: 'auto' }}>
-            <Card.Title>{x.name}</Card.Title>
+          <Card className="learn-about-art-card">
+            <Card.Title className="mt-3">{x.name}</Card.Title>
             <Card.Body>
               <Card.Img
-                style={{ width: '150px', margin: 'auto' }}
+                className="my-3 learn-about-art-img"
                 variant="top"
                 src={x.src}
               />
@@ -74,7 +77,17 @@ function TabeLearnAbout() {
         </h2>
         <br />
         <div id="subcontainer">{renderIf()}</div>
-
+        <br />
+        <Form.Control
+          className="form-control"
+          as="select"
+          aria-label="Default select example"
+        >
+          <option>Choose artist to learn about</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </Form.Control>
       </Container>
     </div>
   );
